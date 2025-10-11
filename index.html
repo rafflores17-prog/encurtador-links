@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinilinkXpro</title>
+  <title>MiniLinkXPRO - Encurtador de Links</title>
   <style>
     body {
       background: #f9fafb;
@@ -14,109 +14,73 @@
       height: 100vh;
       margin: 0;
     }
-
     .container {
       background: white;
       padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 90%;
-      max-width: 420px;
+      max-width: 400px;
     }
-
-    h2 {
-      color: #16a34a;
-      margin-bottom: 1.5rem;
-    }
-
     input {
       width: 100%;
-      padding: 12px;
-      border: 2px solid #d1d5db;
-      border-radius: 10px;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
       margin-bottom: 1rem;
       font-size: 16px;
-      transition: border-color 0.2s;
     }
-
-    input:focus {
-      border-color: #22c55e;
-      outline: none;
-    }
-
     button {
       width: 100%;
       background: #22c55e;
       color: white;
       border: none;
-      padding: 12px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
       transition: background 0.3s;
     }
-
     button:hover {
       background: #16a34a;
     }
-
     .resultado {
-      margin-top: 1.2rem;
+      margin-top: 1rem;
       font-size: 15px;
       color: #111;
-    }
-
-    .caixa-link {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 0.5rem;
       word-break: break-all;
-      font-family: monospace;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
     }
-
-    .caixa-link a {
-      color: #166534;
-      text-decoration: none;
-    }
-
-    .copy-btn {
-      background: #16a34a;
-      color: white;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .copy-btn:hover {
-      background: #15803d;
-    }
-
     footer {
       margin-top: 2rem;
       font-size: 13px;
       color: #555;
     }
+    .marca span:first-child {
+      color: #22c55e;
+      font-weight: 700;
+    }
+    .marca span:last-child {
+      background: #16a34a;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>🔗 MinilinkXpro</h2>
+    <h1 class="marca">
+      <span>MiniLink</span><span>XPRO</span>
+    </h1>
+
     <input id="urlInput" type="url" placeholder="Cole sua URL aqui..." />
     <button id="btnEncurtar">Encurtar</button>
-
     <div class="resultado" id="resultado"></div>
 
-    <footer>© 2025 MinilinkXpro — Todos os direitos reservados</footer>
+    <footer>© 2025 MinilinkXPRO — Todos os direitos reservados</footer>
   </div>
 
   <script>
@@ -132,34 +96,27 @@
         return;
       }
 
-      resultado.innerHTML = "Gerando link curto...";
+      resultado.textContent = "Gerando link curto...";
 
       try {
+        // Chama a rota /encurtar do servidor
         const resp = await fetch(`/encurtar?url=${encodeURIComponent(url)}`);
         const data = await resp.json();
 
         if (data.link_curto) {
           resultado.innerHTML = `
-            ✅ Seu link curto:
-            <div class="caixa-link">
-              <a href="${data.link_curto}" target="_blank">${data.link_curto}</a>
-              <button class="copy-btn" onclick="copiarLink('${data.link_curto}')">Copiar</button>
-            </div>
+            ✅ Seu link curto:<br>
+            <input type="text" value="${data.link_curto}" readonly style="width:100%;padding:8px;border:1px solid #ccc;border-radius:8px;margin-top:6px;text-align:center;">
           `;
         } else {
           resultado.textContent = data.erro || "Erro ao encurtar o link.";
         }
       } catch (err) {
         console.error(err);
-        resultado.textContent = "Erro de conexão com o servidor.";
+        alert("Erro de conexão com o servidor.");
+        resultado.textContent = "";
       }
     });
-
-    function copiarLink(link) {
-      navigator.clipboard.writeText(link).then(() => {
-        alert("Link copiado com sucesso!");
-      });
-    }
   </script>
 </body>
 </html>
