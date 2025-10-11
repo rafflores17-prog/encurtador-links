@@ -11,22 +11,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 1rem;
     }
     .container {
       background: white;
       padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 18px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
       text-align: center;
-      width: 90%;
-      max-width: 400px;
+      width: 100%;
+      max-width: 420px;
     }
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
+      font-size: 1.9rem;
+      margin-bottom: 1.2rem;
       font-weight: 700;
+      letter-spacing: -0.5px;
     }
     h1 span {
       color: #22c55e;
@@ -34,25 +36,34 @@
     }
     input {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: 2px solid #ddd;
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 1rem;
       font-size: 16px;
+      text-align: center;
+      transition: 0.2s;
+    }
+    input:focus {
+      border-color: #22c55e;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
     }
     button {
       width: 100%;
       background: #22c55e;
       color: white;
       border: none;
-      padding: 10px;
-      border-radius: 8px;
+      padding: 12px;
+      border-radius: 10px;
       font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
     button:hover {
       background: #16a34a;
+      transform: scale(1.02);
     }
     .resultado {
       margin-top: 1rem;
@@ -60,23 +71,25 @@
       color: #111;
       word-break: break-all;
       background: #f3f4f6;
-      border-radius: 8px;
-      padding: 10px;
+      border-radius: 12px;
+      padding: 15px;
       display: none;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
     }
     .copy-btn {
       background: #22c55e;
       color: white;
       border: none;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 8px;
-      margin-top: 8px;
+      margin-top: 10px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
+      font-weight: bold;
     }
     .copy-btn:hover {
       background: #16a34a;
+      transform: scale(1.05);
     }
     .popup {
       position: fixed;
@@ -99,9 +112,10 @@
       100% { opacity: 0; transform: translate(-50%, -40%); }
     }
     footer {
-      margin-top: 2rem;
+      margin-top: 1.8rem;
       font-size: 13px;
       color: #555;
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -163,7 +177,7 @@
         if (data.link_curto) {
           resultado.innerHTML = `
             ✅ Seu link curto:<br>
-            <input type="text" value="${data.link_curto}" id="shortLink" readonly style="width:100%;text-align:center;border:none;background:#fff;padding:10px;border-radius:8px;font-size:16px;box-shadow:inset 0 2px 5px rgba(0,0,0,0.15);">
+            <input type="text" value="${data.link_curto}" id="shortLink" readonly style="width:100%;text-align:center;border:none;background:#fff;padding:10px;border-radius:8px;font-size:16px;box-shadow:inset 0 2px 5px rgba(0,0,0,0.15);margin-top:10px;">
             <button class="copy-btn" onclick="copiarLink()">Copiar</button>
           `;
         } else {
