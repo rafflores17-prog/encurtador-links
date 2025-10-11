@@ -25,12 +25,49 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+// Rota que encurta a URL
+app.get("/encurtar", async (req, res) => {
+  const urlLonga = req.query.url;
+  if (!urlLonga) return res.status(400).json({ erro: "URL não fornecida" });
+
+  try {
+    // gera um código curto aleatório (ex: "a1b2c3")
+    const codigo = Math.random().toString(36).substring(2, 8);
+
+    // salva no Supabase
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/links`, {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify({
+        codigo_curto: codigo,
+        url_longa: urlLonga,
+      }),
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("Erro Supabase:", text);
+      return res.status(500).json({ erro: "Erro ao salvar no Supabase" });
+    }
+
+    const linkCurto = `${req.protocol}://${req.get("host")}/${codigo}`;
+    res.json({ link_curto: linkCurto });
+  } catch (err) {
+    console.error("Erro ao encurtar:", err);
+    res.status(500).json({ erro: "Erro no servidor" });
+  }
+});
+
 // Redirecionamento pelo código curto
 app.get("/:codigo", async (req, res) => {
   const codigo = req.params.codigo;
 
   try {
-    // Faz a consulta ao Supabase
     const response = await fetch(
       `${SUPABASE_URL}/rest/v1/links?codigo_curto=eq.${encodeURIComponent(
         codigo
