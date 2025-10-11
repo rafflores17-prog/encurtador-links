@@ -66,7 +66,7 @@
       transform: scale(1.02);
     }
     .resultado {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       font-size: 15px;
       color: #111;
       word-break: break-all;
@@ -80,7 +80,7 @@
       background: #22c55e;
       color: white;
       border: none;
-      padding: 10px 14px;
+      padding: 8px 12px;
       border-radius: 8px;
       margin-top: 10px;
       cursor: pointer;
@@ -135,7 +135,7 @@
     <div class="resultado" id="resultado"></div>
 
     <!-- 📍 2° ADS -->
-    <div style="margin-top: 1.5rem;">
+    <div style="margin-top: 1.8rem;">
       <script type="text/javascript">
         atOptions = {
           'key' : '90c76a0706de2344e105d816ad4badeb',
@@ -148,7 +148,7 @@
       <script type="text/javascript" src="//victimfatalsentiments.com/90c76a0706de2344e105d816ad4badeb/invoke.js"></script>
     </div>
 
-    <footer>© 2025 <strong>MiniLinkXPRO</strong> — Todos os direitos reservados.</footer>
+    <footer>🔗 © 2025 <strong>MiniLinkXPRO</strong> — Todos os direitos reservados.</footer>
   </div>
 
   <div class="popup" id="popup">✅ Seu link foi copiado!</div>
@@ -177,7 +177,7 @@
         if (data.link_curto) {
           resultado.innerHTML = `
             ✅ Seu link curto:<br>
-            <input type="text" value="${data.link_curto}" id="shortLink" readonly style="width:100%;text-align:center;border:none;background:#fff;padding:10px;border-radius:8px;font-size:16px;box-shadow:inset 0 2px 5px rgba(0,0,0,0.15);margin-top:10px;">
+            <input type="text" value="${data.link_curto}" id="shortLink" readonly style="width:100%;text-align:center;border:none;background:#fff;padding:8px;border-radius:8px;font-size:15px;box-shadow:inset 0 2px 5px rgba(0,0,0,0.15);margin-top:10px;">
             <button class="copy-btn" onclick="copiarLink()">Copiar</button>
           `;
         } else {
