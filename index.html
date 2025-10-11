@@ -1,24 +1,173 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encurtador de Links</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encurtador de Links</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      background: #f9f9f9;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #006c4f;
+      margin-bottom: 10px;
+      font-size: 2em;
+      text-align: center;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      border-color: #00a36c;
+    }
+
+    button {
+      background: #00a36c;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #00915f;
+    }
+
+    .result {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .short-link {
+      background: #f3f3f3;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      background: #00a36c;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .copy-btn:hover {
+      background: #007a4e;
+    }
+
+    footer {
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Encurtador de Links</h1>
-        <p>Cole sua URL longa abaixo para gerar uma versão curta.</p>
-        <input type="url" id="long-url-input" placeholder="https://exemplo.com/um/link/muito/longo" required>
-        <button id="shorten-btn">Encurtar</button>
-        <div id="result-area" class="hidden">
-            <p>Seu link curto está pronto:</p>
-            <input type="text" id="short-url-output" readonly>
-        </div>
-    </div>
+  <div class="card">
+    <h1>Encurtador de Links</h1>
+    <p>Cole sua URL longa abaixo para gerar uma versão curta.</p>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script.js"></script>
+    <input type="text" id="urlInput" placeholder="https://exemplo.com/um/link/muito/longo" />
+    <button id="encurtarBtn">Encurtar</button>
+
+    <div class="result" id="resultBox">
+      <div class="short-link" id="shortLink"></div>
+      <button class="copy-btn" id="copyBtn">Copiar link</button>
+    </div>
+  </div>
+
+  <footer>Feito com 💚 usando Supabase + Render</footer>
+
+  <script>
+    document.getElementById("encurtarBtn").addEventListener("click", async () => {
+      const longUrl = document.getElementById("urlInput").value.trim();
+      const resultBox = document.getElementById("resultBox");
+      const shortLinkEl = document.getElementById("shortLink");
+
+      if (!longUrl) {
+        alert("Por favor, insira uma URL válida.");
+        return;
+      }
+
+      try {
+        const response = await fetch("/criar?url=" + encodeURIComponent(longUrl));
+        const data = await response.json();
+
+        if (data && data.shortUrl) {
+          shortLinkEl.textContent = data.shortUrl;
+          shortLinkEl.dataset.url = data.shortUrl;
+          resultBox.style.display = "block";
+        } else {
+          alert("Erro ao encurtar link.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Erro de conexão com o servidor.");
+      }
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", () => {
+      const url = document.getElementById("shortLink").dataset.url;
+      navigator.clipboard.writeText(url);
+      alert("✅ Link copiado para a área de transferência!");
+    });
+  </script>
 </body>
 </html>
