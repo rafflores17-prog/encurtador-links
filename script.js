@@ -1,8 +1,9 @@
 // ===============================================================
 // CONFIGURE AQUI! Cole a sua URL e a sua Chave Anon do Supabase
 // ===============================================================
-const SUPABASE_URL = 'SUA_URL_SUPABASE';
-const SUPABASE_KEY = 'SUA_CHAVE_ANON';
+const SUPABASE_URL = 'https://ojfxuehtcqmczdrryydx.supabase.co
+';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZnh1ZWh0Y3FtY3pkcnJ5eWR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAxMjc0NTcsImV4cCI6MjA3NTcwMzQ1N30.SG5HTX150fCj-XC6nzy9uYM53ti5J_7GC56elKLD1uA';
 // ===============================================================
 
 // Conecta ao Supabase
