@@ -3,145 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinilinkXpro - Encurtador de Links</title>
+  <title>MinilinkXPRO - Encurtador de Links</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       background: #f9fafb;
+      font-family: "Poppins", sans-serif;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
       margin: 0;
-      flex-direction: column;
-      color: #333;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
     }
 
     h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
       color: #16a34a;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
     }
 
-    form {
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 450px;
-      text-align: center;
+    h1 span {
+      color: #065f46;
+      font-weight: 700;
+      font-size: 2rem;
     }
 
-    input[type="text"] {
+    input {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 1rem;
-      margin-bottom: 15px;
+      padding: 10px;
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #22c55e;
+      outline: none;
     }
 
     button {
       width: 100%;
-      background: #16a34a;
+      background: #22c55e;
       color: white;
       border: none;
-      padding: 12px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 16px;
       cursor: pointer;
-      font-size: 1rem;
+      transition: background 0.3s;
     }
 
     button:hover {
-      background: #15803d;
-    }
-
-    .resultado {
-      margin-top: 20px;
-      font-size: 1rem;
-      text-align: center;
-    }
-
-    footer {
-      margin-top: 25px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    footer span {
-      color: #16a34a;
-      font-weight: bold;
-    }
-
-    /* Campo verde claro do link curto */
-    .link-container {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 6px;
-      flex-wrap: wrap;
-      justify-content: center;
-      background: #dcfce7;
-      border: 1px solid #86efac;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    .link-container input {
-      flex: 1;
-      min-width: 230px;
-      padding: 8px;
-      border: none;
-      background: transparent;
-      text-align: center;
-      font-weight: bold;
-      color: #065f46;
-      outline: none;
-    }
-
-    .link-container button {
-      background: #22c55e;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
-    }
-
-    .link-container button:hover {
       background: #16a34a;
     }
 
-    @media (max-width: 480px) {
-      form {
-        padding: 20px;
-      }
-      h1 {
-        font-size: 1.4rem;
-      }
+    .resultado {
+      margin-top: 1.5rem;
+      font-size: 15px;
+      color: #111;
+    }
+
+    .link-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f1f5f9;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 0.5rem;
+      word-break: break-all;
+    }
+
+    .link-box a {
+      color: #16a34a;
+      text-decoration: none;
+      flex: 1;
+      margin-right: 8px;
+    }
+
+    .copy-btn {
+      background: #22c55e;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .copy-btn:hover {
+      background: #16a34a;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 13px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <form id="encurtadorForm">
-    <h1>🔗 <span>MinilinkXpro</span></h1>
-    <input
-      type="text"
-      id="urlInput"
-      placeholder="Cole seu link aqui..."
-      required
-    />
-    <button type="button" id="btnEncurtar">Encurtar</button>
-    <div class="resultado" id="resultado"></div>
-  </form>
+  <div class="container">
+    <h1>MiniLink<span>XPRO</span></h1>
+    <input id="urlInput" type="url" placeholder="Cole sua URL aqui..." />
+    <button id="btnEncurtar">Encurtar</button>
 
-  <footer>
-    © 2025 <span>MinilinkXpro</span> — Todos os direitos reservados
-  </footer>
+    <div class="resultado" id="resultado"></div>
+
+    <footer>© 2025 MinilinkXPRO — Todos os direitos reservados.</footer>
+  </div>
 
   <script>
     const input = document.getElementById("urlInput");
@@ -159,29 +146,17 @@
       resultado.textContent = "Gerando link curto...";
 
       try {
+        // Chama a rota /encurtar do servidor
         const resp = await fetch(`/encurtar?url=${encodeURIComponent(url)}`);
         const data = await resp.json();
 
         if (data.link_curto) {
           resultado.innerHTML = `
-            ✅ Seu link curto:
-            <div class="link-container">
-              <input id="linkCurto" type="text" value="${data.link_curto}" readonly>
-              <button id="btnCopiar">Copiar</button>
+            <div class="link-box">
+              <a href="${data.link_curto}" target="_blank">${data.link_curto}</a>
+              <button class="copy-btn" onclick="copyLink('${data.link_curto}')">📋</button>
             </div>
           `;
-
-          const copiarBtn = document.getElementById("btnCopiar");
-          copiarBtn.addEventListener("click", () => {
-            const link = document.getElementById("linkCurto");
-            link.select();
-            document.execCommand("copy");
-            const original = copiarBtn.textContent;
-            copiarBtn.textContent = "Copiado!";
-            setTimeout(() => {
-              copiarBtn.textContent = original;
-            }, 1500);
-          });
         } else {
           resultado.textContent = data.erro || "Erro ao encurtar o link.";
         }
@@ -191,6 +166,11 @@
         resultado.textContent = "";
       }
     });
+
+    function copyLink(link) {
+      navigator.clipboard.writeText(link);
+      alert("Link copiado com sucesso!");
+    }
   </script>
 </body>
 </html>
