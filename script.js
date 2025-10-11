@@ -59,7 +59,7 @@ if (redirectId) {
     // Se tem um ID, procura no Supabase
     (async () => {
         const { data, error } = await supabase
-            .from('links')
+            .from('Links')
             .select('url_longa')
             .eq('codigo_curto', redirectId)
             .single(); // .single() pega apenas um resultado
