@@ -3,173 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinilinkXPRO - Encurtador de Links</title>
+  <title>MiniLinkXPRO</title>
   <style>
     body {
       background: #f9fafb;
       font-family: "Poppins", sans-serif;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       margin: 0;
     }
 
-    .container {
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
       width: 90%;
       max-width: 400px;
     }
 
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      color: #16a34a;
-      letter-spacing: -0.5px;
+      font-size: 28px;
+      color: #1a9b46;
+      margin-bottom: 20px;
+      font-weight: 700;
     }
 
     h1 span {
-      color: #065f46;
-      font-weight: 700;
-      font-size: 2rem;
+      color: #00662e;
     }
 
-    input {
+    input[type="text"] {
       width: 100%;
-      padding: 10px;
-      border: 2px solid #d1d5db;
-      border-radius: 8px;
-      margin-bottom: 1rem;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
       font-size: 16px;
-      transition: border-color 0.3s;
-    }
-
-    input:focus {
-      border-color: #22c55e;
+      margin-bottom: 15px;
       outline: none;
     }
 
     button {
-      width: 100%;
-      background: #22c55e;
+      background: #1a9b46;
       color: white;
       border: none;
-      padding: 10px;
-      border-radius: 8px;
+      padding: 12px;
+      border-radius: 10px;
       font-size: 16px;
+      width: 100%;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: 0.3s;
     }
 
     button:hover {
-      background: #16a34a;
+      background: #128039;
     }
 
-    .resultado {
-      margin-top: 1.5rem;
-      font-size: 15px;
-      color: #111;
+    .result-box {
+      background: #e8f9ee;
+      border: 1px solid #cde9d4;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+      text-align: center;
     }
 
-    .link-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f1f5f9;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      padding: 10px;
-      margin-top: 0.5rem;
+    .short-link {
+      display: block;
+      color: #00662e;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
       word-break: break-all;
     }
 
-    .link-box a {
-      color: #16a34a;
-      text-decoration: none;
-      flex: 1;
-      margin-right: 8px;
-    }
-
     .copy-btn {
-      background: #22c55e;
-      border: none;
+      background: #1a9b46;
       color: white;
-      border-radius: 6px;
-      padding: 6px 10px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 15px;
       cursor: pointer;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s;
-    }
-
-    .copy-btn:hover {
-      background: #16a34a;
     }
 
     footer {
-      margin-top: 2rem;
+      margin-top: 20px;
       font-size: 13px;
       color: #555;
+    }
+
+    footer span {
+      color: #1a9b46;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>MiniLink<span>XPRO</span></h1>
-    <input id="urlInput" type="url" placeholder="Cole sua URL aqui..." />
-    <button id="btnEncurtar">Encurtar</button>
+  <div class="card">
+    <h1><span>MiniLink</span>XPRO</h1>
 
-    <div class="resultado" id="resultado"></div>
+    <input type="text" id="originalLink" placeholder="Cole o link aqui..." />
+    <button onclick="encurtarLink()">Encurtar</button>
 
-    <footer>© 2025 MinilinkXPRO — Todos os direitos reservados.</footer>
+    <div id="result" class="result-box" style="display: none;">
+      <a id="shortLink" class="short-link" href="#" target="_blank"></a>
+      <button class="copy-btn" onclick="copiarLink()">Copiar</button>
+    </div>
   </div>
 
+  <footer>© 2025 <span>MiniLinkXPRO</span> — Todos os direitos reservados</footer>
+
   <script>
-    const input = document.getElementById("urlInput");
-    const btn = document.getElementById("btnEncurtar");
-    const resultado = document.getElementById("resultado");
-
-    btn.addEventListener("click", async () => {
-      const url = input.value.trim();
-
-      if (!url) {
-        alert("Por favor, insira uma URL válida!");
+    function encurtarLink() {
+      const original = document.getElementById("originalLink").value.trim();
+      if (!original) {
+        alert("Por favor, cole um link válido!");
         return;
       }
 
-      resultado.textContent = "Gerando link curto...";
+      const codigo = Math.random().toString(36).substring(2, 8);
+      const short = "http://mlklads.onrender.com/" + codigo;
 
-      try {
-        // Chama a rota /encurtar do servidor
-        const resp = await fetch(`/encurtar?url=${encodeURIComponent(url)}`);
-        const data = await resp.json();
+      const linkEl = document.getElementById("shortLink");
+      linkEl.href = short;
+      linkEl.textContent = short;
 
-        if (data.link_curto) {
-          resultado.innerHTML = `
-            <div class="link-box">
-              <a href="${data.link_curto}" target="_blank">${data.link_curto}</a>
-              <button class="copy-btn" onclick="copyLink('${data.link_curto}')">📋</button>
-            </div>
-          `;
-        } else {
-          resultado.textContent = data.erro || "Erro ao encurtar o link.";
-        }
-      } catch (err) {
-        console.error(err);
-        alert("Erro de conexão com o servidor.");
-        resultado.textContent = "";
-      }
-    });
+      document.getElementById("result").style.display = "block";
+    }
 
-    function copyLink(link) {
+    function copiarLink() {
+      const link = document.getElementById("shortLink").textContent;
       navigator.clipboard.writeText(link);
-      alert("Link copiado com sucesso!");
+      alert("Link copiado!");
     }
   </script>
 </body>
