@@ -13,8 +13,8 @@ const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 3000;
 
 // ************ usar variáveis de ambiente (mais seguro) ************
-const SUPABASE_URL = process.env.SUPABASE_URL || "https://vcyllncgolzgqhbsgxfq.supabase.co";
-const SUPABASE_KEY = process.env.SUPABASE_KEY || "COLE_SUA_KEY_AQUI_PROVISORIAMENTE";
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
 // ******************************************************************
 
 app.use(express.static(__dirname)); // expõe index.html, script.js, style.css
