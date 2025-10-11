@@ -33,7 +33,7 @@ shortenBtn.addEventListener('click', async () => {
     
     // Tenta inserir no banco de dados do Supabase
     const { data, error } = await supabase
-        .from('links')
+        .from('Links')
         .insert([
             { url_longa: longUrl, codigo_curto: shortCode }
         ]);
