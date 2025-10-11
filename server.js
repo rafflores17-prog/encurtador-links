@@ -2,7 +2,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import fetch from "node-fetch"; // se sua versão do Node já tem fetch global (>=18) pode remover esta linha
+import fetch from "node-fetch"; // se Node >= 18, pode remover
 
 const app = express();
 
@@ -12,32 +12,37 @@ const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
 
-// ************ usar variáveis de ambiente (mais seguro) ************
+// ************ Variáveis de ambiente ************
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
-// ******************************************************************
+// ***********************************************
 
-app.use(express.static(__dirname)); // expõe index.html, script.js, style.css
+// Servir arquivos estáticos (index.html, script.js, style.css)
+app.use(express.static(__dirname));
 
-// rota principal
+// Página inicial
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// rota que redireciona pelo código curto
+// Redirecionamento pelo código curto
 app.get("/:codigo", async (req, res) => {
   const codigo = req.params.codigo;
 
   try {
-    // encodeURIComponent para evitar problemas com caracteres especiais
-    const qs = `?codigo_curto=eq.${encodeURIComponent(codigo)}&select=url_longa`;
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/links${qs}`, {
-      headers: {
-        apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`,
-        Accept: "application/json",
-      },
-    });
+    // Faz a consulta ao Supabase
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/links?codigo_curto=eq.${encodeURIComponent(
+        codigo
+      )}&select=url_longa`,
+      {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Accept: "application/json",
+        },
+      }
+    );
 
     if (!response.ok) {
       const text = await response.text();
@@ -48,7 +53,7 @@ app.get("/:codigo", async (req, res) => {
     const data = await response.json();
 
     if (Array.isArray(data) && data.length > 0 && data[0].url_longa) {
-      // redireciona para a URL original
+      // Redireciona para a URL original
       return res.redirect(data[0].url_longa);
     } else {
       return res.status(404).send("Link não encontrado 😢");
@@ -59,6 +64,7 @@ app.get("/:codigo", async (req, res) => {
   }
 });
 
+// Inicia o servidor
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
