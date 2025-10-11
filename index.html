@@ -55,6 +55,17 @@
       margin-top: 2rem;
       font-size: 13px;
       color: #555;
+      text-align: center;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+    footer a {
+      color: #16a34a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -64,7 +75,14 @@
     <input id="urlInput" type="url" placeholder="Cole sua URL aqui..." />
     <button id="btnEncurtar">Encurtar</button>
     <div class="resultado" id="resultado"></div>
-    <footer>Feito com 💚 usando Supabase + Render</footer>
+
+    <footer>
+      <p>© 2025 <strong>MinilinkXpro</strong> — Todos os direitos reservados.</p>
+      <p>
+        <a href="https://supabase.com" target="_blank">Supabase</a> + 
+        <a href="https://render.com" target="_blank">Render</a>
+      </p>
+    </footer>
   </div>
 
   <script>
