@@ -56,13 +56,38 @@
     }
     .resultado {
       margin-top: 1rem;
-      font-size: 15px;
-      color: #111;
-      word-break: break-all;
-      background: #f3f4f6;
-      border-radius: 8px;
-      padding: 10px;
       display: none;
+      text-align: center;
+    }
+    .caixa-link {
+      background: #f3f4f6;
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow: inset 0 3px 6px rgba(0,0,0,0.15);
+      margin-top: 8px;
+    }
+    .caixa-link input {
+      border: none;
+      background: transparent;
+      text-align: center;
+      font-size: 15px;
+      width: 100%;
+      color: #111;
+      outline: none;
+    }
+    .copiar-btn {
+      margin-top: 8px;
+      background: #16a34a;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .copiar-btn:hover {
+      background: #15803d;
     }
     footer {
       margin-top: 2rem;
@@ -117,7 +142,7 @@
       }
 
       resultado.style.display = "block";
-      resultado.textContent = "Gerando link curto...";
+      resultado.innerHTML = "Gerando link curto...";
 
       try {
         const resp = await fetch(`/encurtar?url=${encodeURIComponent(url)}`);
@@ -125,8 +150,11 @@
 
         if (data.link_curto) {
           resultado.innerHTML = `
-            ✅ Seu link curto:<br>
-            <input type="text" value="${data.link_curto}" readonly style="width:100%;text-align:center;border:none;background:#f3f4f6;font-size:15px;color:#111;">
+            ✅ Seu link curto:
+            <div class="caixa-link">
+              <input id="linkCurto" type="text" value="${data.link_curto}" readonly>
+            </div>
+            <button class="copiar-btn" onclick="copiarLink()">Copiar</button>
           `;
         } else {
           resultado.textContent = data.erro || "Erro ao encurtar o link.";
@@ -137,6 +165,13 @@
         resultado.textContent = "";
       }
     });
+
+    function copiarLink() {
+      const linkInput = document.getElementById("linkCurto");
+      linkInput.select();
+      document.execCommand("copy");
+      alert("Link copiado!");
+    }
   </script>
 </body>
 </html>
