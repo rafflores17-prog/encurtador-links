@@ -56,38 +56,47 @@
     }
     .resultado {
       margin-top: 1rem;
-      display: none;
-      text-align: center;
-    }
-    .caixa-link {
-      background: #f3f4f6;
-      border-radius: 10px;
-      padding: 12px;
-      box-shadow: inset 0 3px 6px rgba(0,0,0,0.15);
-      margin-top: 8px;
-    }
-    .caixa-link input {
-      border: none;
-      background: transparent;
-      text-align: center;
       font-size: 15px;
-      width: 100%;
       color: #111;
-      outline: none;
+      word-break: break-all;
+      background: #f3f4f6;
+      border-radius: 8px;
+      padding: 10px;
+      display: none;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
     }
-    .copiar-btn {
-      margin-top: 8px;
-      background: #16a34a;
-      color: #fff;
+    .copy-btn {
+      background: #22c55e;
+      color: white;
       border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-top: 8px;
       cursor: pointer;
       transition: background 0.3s;
     }
-    .copiar-btn:hover {
-      background: #15803d;
+    .copy-btn:hover {
+      background: #16a34a;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(34, 197, 94, 0.95);
+      color: white;
+      font-size: 1.5rem;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 9999;
+      animation: fadeInOut 1.5s ease forwards;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translate(-50%, -60%); }
+      10%, 90% { opacity: 1; transform: translate(-50%, -50%); }
+      100% { opacity: 0; transform: translate(-50%, -40%); }
     }
     footer {
       margin-top: 2rem;
@@ -103,7 +112,7 @@
     <input id="urlInput" type="url" placeholder="Cole sua URL aqui..." />
     <button id="btnEncurtar">Encurtar</button>
 
-    <!-- 📍 1° ADS: Native Banner (logo abaixo do botão) -->
+    <!-- 📍 1° ADS -->
     <div style="margin-top: 1rem;">
       <script async="async" data-cfasync="false" src="//victimfatalsentiments.com/5550de8676aa75b2113485d3be8bf344/invoke.js"></script>
       <div id="container-5550de8676aa75b2113485d3be8bf344"></div>
@@ -111,7 +120,7 @@
 
     <div class="resultado" id="resultado"></div>
 
-    <!-- 📍 2° ADS: 320x50 Banner (acima do rodapé) -->
+    <!-- 📍 2° ADS -->
     <div style="margin-top: 1.5rem;">
       <script type="text/javascript">
         atOptions = {
@@ -128,10 +137,13 @@
     <footer>© 2025 <strong>MiniLinkXPRO</strong> — Todos os direitos reservados.</footer>
   </div>
 
+  <div class="popup" id="popup">✅ Seu link foi copiado!</div>
+
   <script>
     const input = document.getElementById("urlInput");
     const btn = document.getElementById("btnEncurtar");
     const resultado = document.getElementById("resultado");
+    const popup = document.getElementById("popup");
 
     btn.addEventListener("click", async () => {
       const url = input.value.trim();
@@ -142,7 +154,7 @@
       }
 
       resultado.style.display = "block";
-      resultado.innerHTML = "Gerando link curto...";
+      resultado.textContent = "Gerando link curto...";
 
       try {
         const resp = await fetch(`/encurtar?url=${encodeURIComponent(url)}`);
@@ -150,11 +162,9 @@
 
         if (data.link_curto) {
           resultado.innerHTML = `
-            ✅ Seu link curto:
-            <div class="caixa-link">
-              <input id="linkCurto" type="text" value="${data.link_curto}" readonly>
-            </div>
-            <button class="copiar-btn" onclick="copiarLink()">Copiar</button>
+            ✅ Seu link curto:<br>
+            <input type="text" value="${data.link_curto}" id="shortLink" readonly style="width:100%;text-align:center;border:none;background:#fff;padding:10px;border-radius:8px;font-size:16px;box-shadow:inset 0 2px 5px rgba(0,0,0,0.15);">
+            <button class="copy-btn" onclick="copiarLink()">Copiar</button>
           `;
         } else {
           resultado.textContent = data.erro || "Erro ao encurtar o link.";
@@ -167,10 +177,12 @@
     });
 
     function copiarLink() {
-      const linkInput = document.getElementById("linkCurto");
-      linkInput.select();
+      const link = document.getElementById("shortLink");
+      link.select();
       document.execCommand("copy");
-      alert("Link copiado!");
+
+      popup.style.display = "block";
+      setTimeout(() => { popup.style.display = "none"; }, 1500);
     }
   </script>
 </body>
