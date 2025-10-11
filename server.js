@@ -1,50 +1,64 @@
+// server.js
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import fetch from "node-fetch"; // Importa fetch para chamadas ao Supabase
+import fetch from "node-fetch"; // se sua versão do Node já tem fetch global (>=18) pode remover esta linha
 
 const app = express();
 
-// Variáveis
+// Corrige caminhos no ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const PORT = process.env.PORT || 3000;
 
-// Chaves do Supabase
-const SUPABASE_URL = "https://vcyllncgolzgqhbsgxfq.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZjeWxsbmNnb2x6Z3FoYnNneGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAxOTM5MTQsImV4cCI6MjA3NTc2OTkxNH0.4S1o26SEw3dTwsOmnV3yjz5WANumUUhgQSygjUPTFW0";
+// ************ usar variáveis de ambiente (mais seguro) ************
+const SUPABASE_URL = process.env.SUPABASE_URL || "https://vcyllncgolzgqhbsgxfq.supabase.co";
+const SUPABASE_KEY = process.env.SUPABASE_KEY || "COLE_SUA_KEY_AQUI_PROVISORIAMENTE";
+// ******************************************************************
 
-// Permite ler arquivos estáticos (index.html, script.js, style.css)
-app.use(express.static(__dirname));
+app.use(express.static(__dirname)); // expõe index.html, script.js, style.css
 
-// 👉 Rota principal (abre o index.html)
+// rota principal
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// 👉 Rota para redirecionar links curtos
+// rota que redireciona pelo código curto
 app.get("/:codigo", async (req, res) => {
   const codigo = req.params.codigo;
 
-  // Busca no Supabase
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/links?codigo_curto=eq.${codigo}`, {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-    },
-  });
+  try {
+    // encodeURIComponent para evitar problemas com caracteres especiais
+    const qs = `?codigo_curto=eq.${encodeURIComponent(codigo)}&select=url_longa`;
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/links${qs}`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Accept: "application/json",
+      },
+    });
 
-  const data = await response.json();
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("Supabase REST error:", response.status, text);
+      return res.status(500).send("Erro ao buscar link (server).");
+    }
 
-  if (data.length > 0) {
-    // Redireciona para a URL original
-    res.redirect(data[0].url_longa);
-  } else {
-    res.status(404).send("Link não encontrado 😢");
+    const data = await response.json();
+
+    if (Array.isArray(data) && data.length > 0 && data[0].url_longa) {
+      // redireciona para a URL original
+      return res.redirect(data[0].url_longa);
+    } else {
+      return res.status(404).send("Link não encontrado 😢");
+    }
+  } catch (err) {
+    console.error("Erro ao procurar código curto:", err);
+    return res.status(500).send("Erro no servidor.");
   }
 });
 
-// Inicia o servidor
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
