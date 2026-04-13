@@ -1,216 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <!-- ✅ Verificação do Google Search Console -->
-  <meta name="google-site-verification" content="2KQFZMu-KLc5o5sDHpPsucFkis0rIkT13J5p7S6QILw" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MiniLinkXPRO - Encurtador de Links Rápido e Gratuito</title>
-
-  <!-- =============================================================== -->
-  <!--                  NOVAS TAGS DE SEO PARA O BRASIL                  -->
-  <!-- =============================================================== -->
-  <meta name="description" content="Encurte links longos de forma rápida, gratuita e segura com o MiniLinkXPRO. Crie URLs curtas e fáceis de compartilhar em segundos para suas redes sociais e projetos.">
-  <meta name="keywords" content="encurtador de link, encurtador de url, encurtar link, link curto, url curta, encurtador de link gratis, minilink, link personalizado, encurtador de links para instagram">
-  <meta name="author" content="MiniLinkXPRO">
-
-  <style>
-    body {
-      background: #f9fafb;
-      font-family: "Poppins", sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 1rem;
-    }
-    .container {
-      background: white;
-      padding: 2rem;
-      border-radius: 18px;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      width: 100%;
-      max-width: 420px;
-    }
-    h1 {
-      font-size: 1.9rem;
-      margin-bottom: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    h1 span {
-      color: #22c55e;
-      font-size: 2rem;
-    }
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      font-size: 16px;
-      text-align: center;
-      transition: 0.2s;
-    }
-    input:focus {
-      border-color: #22c55e;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
-    }
-    button {
-      width: 100%;
-      background: #22c55e;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-    button:hover {
-      background: #16a34a;
-      transform: scale(1.02);
-    }
-    .resultado {
-      margin-top: 1.5rem;
-      font-size: 15px;
-      color: #111;
-      word-break: break-all;
-      background: #f3f4f6;
-      border-radius: 12px;
-      padding: 15px;
-      display: none;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
-    }
-    .copy-btn {
-      background: #22c55e;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      font-weight: bold;
-    }
-    .copy-btn:hover {
-      background: #16a34a;
-      transform: scale(1.05);
-    }
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(34, 197, 94, 0.95);
-      color: white;
-      font-size: 1.5rem;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      display: none;
-      z-index: 9999;
-      animation: fadeInOut 1.5s ease forwards;
-    }
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translate(-50%, -60%); }
-      10%, 90% { opacity: 1; transform: translate(-50%, -50%); }
-      100% { opacity: 0; transform: translate(-50%, -40%); }
-    }
-    footer {
-      margin-top: 1.8rem;
-      font-size: 13px;
-      color: #555;
-      opacity: 0.9;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BGDV LINKS | Premium Shortener</title>
+    
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>MiniLink<span>XPRO</span></h1>
 
-    <input id="urlInput" type="url" placeholder="Cole sua URL aqui..." />
-    <button id="btnEncurtar">Encurtar</button>
+    <div class="app-container">
+        <header>
+            <div class="logo">BGDV<span>LINKS</span></div>
+            <p class="tagline">O seu encurtador inteligente</p>
+        </header>
 
-    <!-- 📍 1° ADS -->
-    <div style="margin-top: 1rem;">
-      <script async="async" data-cfasync="false" src="//victimfatalsentiments.com/5550de8676aa75b2113485d3be8bf344/invoke.js"></script>
-      <div id="container-5550de8676aa75b2113485d3be8bf344"></div>
+        <main>
+            <div class="ad-unit top-ad">
+                <span>Espaço Publicitário</span>
+            </div>
+
+            <section class="main-card">
+                <div class="input-group">
+                    <label>Cole sua URL longa</label>
+                    <input id="long-url-input" type="url" placeholder="https://exemplo.com/link-gigante" />
+                </div>
+                
+                <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
+
+                <div id="result-area" class="hidden animate-in">
+                    <div class="result-box">
+                        <label>Seu link curto pronto:</label>
+                        <div class="copy-wrapper">
+                            <input type="text" id="short-url-output" readonly>
+                            <button onclick="copiarLink()" class="inner-copy">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="ad-unit side-ad">
+                <span>Espaço Publicitário</span>
+            </div>
+
+            <section class="features-grid">
+                <div class="f-item">
+                    <span class="icon">⚡</span>
+                    <h4>Instantâneo</h4>
+                </div>
+                <div class="f-item">
+                    <span class="icon">🛡️</span>
+                    <h4>Seguro</h4>
+                </div>
+                <div class="f-item">
+                    <span class="icon">📱</span>
+                    <h4>Mobile-First</h4>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 BGDV LINKS</p>
+            <nav>
+                <a href="#">Termos</a> • <a href="#">Privacidade</a>
+            </nav>
+        </footer>
     </div>
 
-    <div class="resultado" id="resultado"></div>
-
-    <!-- 📍 2° ADS -->
-    <div style="margin-top: 1.8rem;">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '90c76a0706de2344e105d816ad4badeb',
-          'format' : 'iframe',
-          'height' : 50,
-          'width' : 320,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="//victimfatalsentiments.com/90c76a0706de2344e105d816ad4badeb/invoke.js"></script>
-    </div>
-
-    <footer>🔗 © 2025 <strong>MiniLinkXPRO</strong> — Todos os direitos reservados.</footer>
-  </div>
-
-  <div class="popup" id="popup">✅ Seu link foi copiado!</div>
-
-  <script>
-    const input = document.getElementById("urlInput");
-    const btn = document.getElementById("btnEncurtar");
-    const resultado = document.getElementById("resultado");
-    const popup = document.getElementById("popup");
-
-    btn.addEventListener("click", async () => {
-      const url = input.value.trim();
-
-      if (!url) {
-        alert("Por favor, insira uma URL válida!");
-        return;
-      }
-
-      resultado.style.display = "block";
-      resultado.textContent = "Gerando link curto...";
-
-      try {
-        const resp = await fetch(`/encurtar?url=${encodeURIComponent(url)}`);
-        const data = await resp.json();
-
-        if (data.link_curto) {
-          resultado.innerHTML = `
-            ✅ Seu link curto:<br>
-            <input type="text" value="${data.link_curto}" id="shortLink" readonly style="width:100%;text-align:center;border:none;background:#fff;padding:8px;border-radius:8px;font-size:15px;box-shadow:inset 0 2px 5px rgba(0,0,0,0.15);margin-top:10px;">
-            <button class="copy-btn" onclick="copiarLink()">Copiar</button>
-          `;
-        } else {
-          resultado.textContent = data.erro || "Erro ao encurtar o link.";
+    <script src="script.js"></script>
+    <script>
+        function copiarLink() {
+            const copyText = document.getElementById("short-url-output");
+            copyText.select();
+            document.execCommand("copy");
+            const btn = document.querySelector('.inner-copy');
+            btn.innerText = "Copiado!";
+            setTimeout(() => { btn.innerText = "Copiar"; }, 2000);
         }
-      } catch (err) {
-        console.error(err);
-        alert("Erro de conexão com o servidor.");
-        resultado.textContent = "";
-      }
-    });
-
-    function copiarLink() {
-      const link = document.getElementById("shortLink");
-      link.select();
-      document.execCommand("copy");
-
-      popup.style.display = "block";
-      setTimeout(() => { popup.style.display = "none"; }, 1500);
-    }
-  </script>
+    </script>
 </body>
 </html>
-
-
