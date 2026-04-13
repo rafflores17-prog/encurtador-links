@@ -5,6 +5,10 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://bgdv.online/dicas.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bgdv.online/privacidade.html</loc>
     <priority>0.5</priority>
   </url>
