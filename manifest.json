@@ -1,7 +1,7 @@
 {
   "name": "BGDV LINKS",
-  "short_name": "BGDV Links",
-  "description": "Encurtador de links profissional e rápido.",
+  "short_name": "BGDV",
+  "description": "Encurtador de links profissional",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
@@ -10,7 +10,8 @@
     {
       "src": "https://cdn-icons-png.flaticon.com/512/10061/10061834.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
