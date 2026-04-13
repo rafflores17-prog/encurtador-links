@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BGDV LINKS | Premium Shortener</title>
     
+    <link rel="manifest" href="/manifest.json">
+    
     <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BGDV LINKS">
+    
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/10061/10061834.png">
     
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -73,15 +79,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        function copiarLink() {
-            const copyText = document.getElementById("short-url-output");
-            copyText.select();
-            document.execCommand("copy");
-            const btn = document.querySelector('.inner-copy');
-            btn.innerText = "Copiado!";
-            setTimeout(() => { btn.innerText = "Copiar"; }, 2000);
-        }
-    </script>
 </body>
 </html>
