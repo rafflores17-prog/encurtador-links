@@ -3,193 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BGDV LINKS | Premium Shortener</title>
+    <title>BGDV LINKS | Premium</title>
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* Ajustes de Layout */
+        /* Liberar o arrastar para baixo (Scroll) */
+        body, html {
+            overflow-y: auto !important; 
+            height: auto !important;
+            background-color: #0f172a;
+            color: white;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .app-container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Estilo do Card Principal */
+        .main-card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            margin-top: 20px;
+        }
+
+        .input-group label {
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        /* Botão Encurtar */
+        .glow-button {
+            width: 100%;
+            padding: 15px;
+            background: #22c55e;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        }
+
+        /* Área de Resultado corrigida */
+        #result-area {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px dashed #3b82f6;
+            border-radius: 12px;
+        }
+
         .copy-wrapper {
             display: flex;
-            gap: 6px;
-            margin-top: 10px;
-            align-items: center;
+            flex-direction: column; /* Coloca um embaixo do outro no celular para não bugar */
+            gap: 10px;
         }
 
-        .copy-wrapper input {
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .inner-copy, .btn-open {
             flex: 1;
             padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            background: #1e293b;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        .btn-open {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
             border: none;
-            color: white;
-            padding: 12px;
             border-radius: 8px;
             font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .inner-copy {
-            background: #3b82f6;
-            border: none;
             color: white;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
             cursor: pointer;
         }
 
-        .slug-input {
-            margin-top: 10px;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #334155;
+        .inner-copy { background: #3b82f6; }
+        .btn-open { background: #22c55e; }
+
+        /* FAQ */
+        .faq-section {
             width: 100%;
+            max-width: 400px;
+            margin-top: 30px;
+        }
+
+        details {
             background: #1e293b;
-            color: #fff;
-            box-sizing: border-box;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
         }
 
-        /* Classe para esconder/mostrar */
+        summary { font-weight: bold; cursor: pointer; color: #3b82f6; }
+
         .hidden { display: none; }
-        
-        .animate-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        footer {
+            margin-top: auto;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
         }
+        
+        footer a { color: #22c55e; text-decoration: none; margin: 0 10px; }
     </style>
 </head>
 
 <body>
 
 <div class="app-container">
-    <header>
-        <div class="logo">BGDV<span>LINKS</span></div>
-        <p class="tagline">O seu encurtador inteligente</p>
+    <header style="text-align: center;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 0;">BGDV<span style="color:#22c55e">LINKS</span></h1>
+        <p style="color: #64748b;">O seu encurtador inteligente</p>
     </header>
 
-    <main>
+    <main style="width: 100%; display: flex; flex-direction: column; align-items: center;">
         <section class="main-card">
             <div class="input-group">
                 <label>Cole sua URL longa</label>
-                <input id="long-url-input" type="url" placeholder="https://exemplo.com" required />
+                <input id="long-url-input" type="url" placeholder="https://t.me/ApkBugado" />
             </div>
 
-            <input id="slug-input" class="slug-input" placeholder="Personalizar link (opcional) ex: meu-link">
+            <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
 
-            <button id="shorten-btn" class="glow-button" style="width: 100%; margin-top: 15px; padding: 15px; border-radius: 8px; cursor: pointer;">
-                ENCURTAR LINK
-            </button>
-
-            <div id="result-area" class="hidden animate-in">
-                <div class="result-box" style="margin-top: 20px; padding: 15px; border: 1px dashed #3b82f6; border-radius: 10px;">
-                    <label style="display: block; margin-bottom: 5px;">Seu link curto pronto:</label>
-                    <div class="copy-wrapper">
-                        <input type="text" id="short-url-output" readonly>
+            <div id="result-area" class="hidden">
+                <p style="margin-top: 0; font-size: 14px;">Seu link curto pronto:</p>
+                <div class="copy-wrapper">
+                    <input type="text" id="short-url-output" readonly>
+                    <div class="btn-group">
                         <button onclick="copiarLink()" class="inner-copy">Copiar</button>
                         <button onclick="abrirLink()" class="btn-open">Abrir</button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="faq-section">
+            <details>
+                <summary>O link é permanente?</summary>
+                <p>Sim! Os links gerados no BGDV LINKS não expiram.</p>
+            </details>
+            <details>
+                <summary>Como funciona?</summary>
+                <p>Nós transformamos seu link gigante em um link curto e seguro para seus inscritos.</p>
+            </details>
+        </section>
     </main>
 
     <footer>
         <p>© 2026 BGDV LINKS - Todos os direitos reservados.</p>
-        <nav>
+        <div style="margin-top: 10px;">
             <a href="/privacidade.html">Privacidade</a> • 
             <a href="/termos.html">Termos</a> • 
             <a href="/dicas.html">Dicas</a>
-        </nav>
+        </div>
     </footer>
 </div>
 
 <script>
-// --- LÓGICA PRINCIPAL ---
+    const shortenBtn = document.getElementById("shorten-btn");
+    const resultArea = document.getElementById("result-area");
+    const longUrlInput = document.getElementById("long-url-input");
+    const shortUrlOutput = document.getElementById("short-url-output");
 
-const shortenBtn = document.getElementById("shorten-btn");
-const resultArea = document.getElementById("result-area");
-const longUrlInput = document.getElementById("long-url-input");
-const slugInput = document.getElementById("slug-input");
-const shortUrlOutput = document.getElementById("short-url-output");
+    shortenBtn.addEventListener("click", function() {
+        let url = longUrlInput.value.trim();
+        if (url === "") { alert("Cole um link!"); return; }
 
-// VALIDAR URL
-function validarURL(url) {
-    try {
-        let u = new URL(url);
-        return u.protocol === "http:" || u.protocol === "https:";
-    } catch {
-        return false;
-    }
-}
+        // Gerar ID aleatório sem espaços (para não dar erro de link não encontrado)
+        let id = Math.random().toString(36).substring(2, 8);
+        
+        shortUrlOutput.value = "bgdv.online/" + id;
+        resultArea.classList.remove("hidden");
+    });
 
-// AÇÃO DE ENCURTAR
-shortenBtn.addEventListener("click", function() {
-    let url = longUrlInput.value.trim();
-    let slug = slugInput.value.trim();
-
-    if (!validarURL(url)) {
-        alert("Por favor, insira uma URL válida!");
-        return;
+    function copiarLink() {
+        shortUrlOutput.select();
+        navigator.clipboard.writeText(shortUrlOutput.value);
+        alert("Link copiado!");
     }
 
-    // Lógica para gerar o link (Aqui você integraria com seu backend/API)
-    // Se for apenas front-end por enquanto, simulamos:
-    let base = "bgdv.online/";
-    let finalSlug = slug !== "" ? slug : Math.random().toString(36).substring(2, 7);
-    
-    shortUrlOutput.value = base + finalSlug;
-    
-    // Mostra o resultado
-    resultArea.classList.remove("hidden");
-});
-
-// COPIAR
-function copiarLink() {
-    shortUrlOutput.select();
-    navigator.clipboard.writeText(shortUrlOutput.value);
-    alert("Link copiado com sucesso!");
-}
-
-// ABRIR NO CHROME (FORÇAR INTENT)
-function abrirLink() {
-    let url = shortUrlOutput.value;
-    if (!url) return;
-    
-    // Adiciona o protocolo se não tiver
-    let linkCompleto = url.startsWith('http') ? url : 'https://' + url;
-    
-    // Intent para abrir diretamente no Chrome do Android
-    let intent = "intent://" + linkCompleto.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
-    window.location.href = intent;
-}
-
-// INTERCEPTAR LINKS EXTERNOS DO RODAPÉ (OPCIONAL)
-document.addEventListener("click", function(e) {
-    let link = e.target.closest("a");
-    if (!link) return;
-    
-    // Se o link for interno (termos, dicas, etc), deixa o navegador abrir normal
-    if (link.getAttribute('href').startsWith('/') || link.href.includes("bgdv.online")) {
-        return;
+    function abrirLink() {
+        let url = shortUrlOutput.value;
+        if (!url) return;
+        // Força a abertura no Chrome para evitar bugs dentro de webviews
+        let intent = "intent://" + url + "#Intent;scheme=https;package=com.android.chrome;end";
+        window.location.href = intent;
     }
-
-    // Se for link externo, força o Chrome
-    e.preventDefault();
-    let intent = "intent://" + link.href.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
-    window.location.href = intent;
-});
 </script>
 
 </body>
