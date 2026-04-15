@@ -1,162 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BGDV LINKS | Premium Shortener</title>
+    
+    <meta name="description" content="O melhor e mais rápido encurtador de links.">
+    <meta name="keywords" content="encurtador de links, bgdv, url curta">
 
-<title>BGDV LINKS | Premium Shortener</title>
+    <link rel="manifest" href="/manifest.json">
+    
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-<meta name="description" content="O melhor e mais rápido encurtador de links.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#0f172a">
+    <script>
+      if (window.location.search.includes('mestre=on')) {
+          localStorage.setItem('mestre_invisivel', 'ativo');
+          alert('Modo Mestre Ativado');
+      }
+      if (localStorage.getItem('mestre_invisivel') === 'ativo') {
+          window['ga-disable-G-D5CWHDJZQM'] = true;
+      }
+    </script>
 
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5CWHDJZQM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-D5CWHDJZQM');
+    </script>
 </head>
 
 <body>
 
-<div class="app-container">
+    <div class="app-container">
+        <header>
+            <div class="logo">BGDV<span>LINKS</span></div>
+            <p class="tagline">O seu encurtador inteligente</p>
+        </header>
 
-<header>
-    <div class="logo">BGDV<span>LINKS</span></div>
-    <p class="tagline">O seu encurtador inteligente</p>
-</header>
+        <main>
 
-<main>
+            <div class="ad-unit top-ad">
+                <span style="font-size: 10px; color: #475569;">Publicidade Protegida</span>
+            </div>
 
-<div class="ad-unit top-ad">
-    <span style="font-size: 10px; color: #475569;">Publicidade Protegida</span>
-</div>
+            <section class="main-card">
+                <div class="input-group">
+                    <label>Cole sua URL longa</label>
+                    <input id="long-url-input" type="url" placeholder="https://exemplo.com/link-gigante" />
+                </div>
+                
+                <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
 
-<section class="main-card">
+                <div id="result-area" class="hidden animate-in">
+                    <div class="result-box">
+                        <label>Seu link curto pronto:</label>
+                        <div class="copy-wrapper">
+                            <input type="text" id="short-url-output" readonly>
+                            <button onclick="copiarLink()" class="inner-copy">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<div class="input-group">
-    <label>Cole sua URL longa</label>
-    <input id="long-url-input" type="url" placeholder="https://exemplo.com/link-gigante" />
-</div>
+            <section class="features-grid">
+                <div class="f-item"><span class="icon">⚡</span><h4>RÁPIDO</h4></div>
+                <div class="f-item"><span class="icon">🛡️</span><h4>SEGURO</h4></div>
+                <div class="f-item"><span class="icon">📱</span><h4>MOBILE</h4></div>
+            </section>
 
-<button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
+            <section class="faq-section">
+                <h3>Dúvidas Frequentes</h3>
+                <details class="faq-item">
+                    <summary>O que é o BGDV LINKS?</summary>
+                    <p>Ferramenta para encurtar URLs com segurança.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>É seguro?</summary>
+                    <p>Sim, 100% seguro.</p>
+                </details>
+            </section>
 
-<div id="result-area" class="hidden animate-in">
-    <div class="result-box">
-        <label>Seu link curto pronto:</label>
+        </main>
 
-        <div class="copy-wrapper">
-            <input type="text" id="short-url-output" readonly>
-
-            <button onclick="copiarLink()" class="inner-copy">Copiar</button>
-
-            <!-- BOTÃO EXTRA SEM QUEBRAR -->
-            <button onclick="abrirLink()" class="inner-copy">Abrir</button>
-        </div>
+        <footer>
+            <p>© 2026 BGDV LINKS</p>
+            <nav>
+                <a href="/privacidade.html">Privacidade</a> • 
+                <a href="/termos.html">Termos</a> • 
+                <a href="/dicas.html">Dicas</a>
+            </nav>
+        </footer>
     </div>
-</div>
 
-</section>
+    <script src="script.js"></script>
 
-<section class="features-grid">
-    <div class="f-item"><span class="icon">⚡</span><h4>RÁPIDO</h4></div>
-    <div class="f-item"><span class="icon">🛡️</span><h4>SEGURO</h4></div>
-    <div class="f-item"><span class="icon">📱</span><h4>MOBILE</h4></div>
-</section>
+    <!-- 🔥 SCRIPT QUE RESOLVE TUDO -->
+    <script>
+    document.addEventListener("click", function(e) {
+        let link = e.target.closest("a");
+        if (!link) return;
 
-<section class="faq-section">
-    <h3>Dúvidas Frequentes</h3>
+        let url = link.href;
 
-    <details class="faq-item">
-        <summary>O que é o BGDV LINKS?</summary>
-        <p>Ferramenta premium para encurtar URLs com segurança e rapidez.</p>
-    </details>
+        // Se for interno, deixa normal
+        if (url.includes("bgdv.online")) return;
 
-    <details class="faq-item">
-        <summary>É seguro usar este encurtador?</summary>
-        <p>Sim, 100% seguro.</p>
-    </details>
-
-    <details class="faq-item">
-        <summary>Como encurtar um link?</summary>
-        <p>Basta colar o link e clicar no botão.</p>
-    </details>
-</section>
-
-</main>
-
-<footer>
-<p>© 2026 BGDV LINKS - Todos os direitos reservados.</p>
-
-<nav>
-<a href="/privacidade.html">Privacidade</a> • 
-<a href="/termos.html">Termos</a> • 
-<a href="/dicas.html">Dicas</a>
-</nav>
-</footer>
-
-</div>
-
-<script src="script.js"></script>
-
-<!-- 🔥 SCRIPT FINAL (BLINDADO) -->
-<script>
-
-// VALIDAR SEM QUEBRAR
-document.addEventListener("click", function(e) {
-    let btn = e.target.closest("#shorten-btn");
-    if (!btn) return;
-
-    let input = document.getElementById("long-url-input").value;
-
-    try {
-        let url = new URL(input);
-        if (!url.protocol.startsWith("http")) {
-            alert("Digite um link válido!");
-            e.preventDefault();
-        }
-    } catch {
-        alert("Digite um link válido!");
         e.preventDefault();
-    }
-});
 
-// COPIAR AUTOMÁTICO SEM QUEBRAR
-let lastValue = "";
-setInterval(() => {
-    let el = document.getElementById("short-url-output");
-    if (!el) return;
-
-    if (el.value && el.value !== lastValue) {
-        lastValue = el.value;
-        navigator.clipboard.writeText(el.value);
-    }
-}, 1000);
-
-// ABRIR FORA DO APP
-function abrirLink() {
-    let url = document.getElementById("short-url-output").value;
-    if (!url) return;
-
-    let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
-    window.location.href = intent;
-}
-
-// LINKS EXTERNOS
-document.addEventListener("click", function(e) {
-    let link = e.target.closest("a");
-    if (!link) return;
-
-    let url = link.href;
-
-    if (url.includes("bgdv.online")) return;
-
-    e.preventDefault();
-
-    let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
-    window.location.href = intent;
-});
-
-</script>
+        try {
+            // Força abrir no Chrome (Android)
+            let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
+            window.location.href = intent;
+        } catch (err) {
+            // fallback
+            window.location.href = url;
+        }
+    });
+    </script>
 
 </body>
 </html>
