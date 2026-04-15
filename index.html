@@ -6,32 +6,44 @@
 
 <title>BGDV LINKS | Premium Shortener</title>
 
-<meta name="description" content="O melhor e mais rápido encurtador de links.">
-<meta name="keywords" content="encurtador de links, bgdv">
-
-<link rel="manifest" href="/manifest.json">
-
-<meta name="theme-color" content="#0f172a">
-
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-/* 🔥 BOTÃO NOVO MAIS BONITO */
+
+/* 🔥 CAIXA MAIS BONITA SEM QUEBRAR LAYOUT */
+.copy-wrapper {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.copy-wrapper input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+}
+
+/* BOTÃO ABRIR */
 .btn-open {
     background: linear-gradient(135deg, #22c55e, #16a34a);
     border: none;
     color: white;
-    padding: 10px 14px;
-    border-radius: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
     font-weight: bold;
-    margin-left: 6px;
     cursor: pointer;
 }
 
-.btn-open:active {
-    transform: scale(0.95);
+/* INPUT SLUG */
+.slug-input {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    width: 100%;
 }
+
 </style>
 
 </head>
@@ -47,21 +59,21 @@
 
 <main>
 
-<div class="ad-unit top-ad">
-    <span style="font-size: 10px; color: #475569;">Publicidade Protegida</span>
-</div>
-
 <section class="main-card">
 
 <div class="input-group">
     <label>Cole sua URL longa</label>
-    <input id="long-url-input" type="url" placeholder="https://exemplo.com/link-gigante" />
+    <input id="long-url-input" type="url" placeholder="https://exemplo.com" />
 </div>
+
+<!-- 🔥 NOVO (OPCIONAL) -->
+<input id="slug-input" class="slug-input" placeholder="Personalizar link (opcional) ex: meu-link">
 
 <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
 
 <div id="result-area" class="hidden animate-in">
     <div class="result-box">
+
         <label>Seu link curto pronto:</label>
 
         <div class="copy-wrapper">
@@ -69,37 +81,12 @@
 
             <button onclick="copiarLink()" class="inner-copy">Copiar</button>
 
-            <!-- 🔥 NOVO BOTÃO -->
             <button onclick="abrirLink()" class="btn-open">Abrir</button>
         </div>
+
     </div>
 </div>
 
-</section>
-
-<section class="features-grid">
-    <div class="f-item"><span class="icon">⚡</span><h4>RÁPIDO</h4></div>
-    <div class="f-item"><span class="icon">🛡️</span><h4>SEGURO</h4></div>
-    <div class="f-item"><span class="icon">📱</span><h4>MOBILE</h4></div>
-</section>
-
-<section class="faq-section">
-    <h3>Dúvidas Frequentes</h3>
-
-    <details class="faq-item">
-        <summary>O que é o BGDV LINKS?</summary>
-        <p>Ferramenta premium para encurtar URLs com segurança e rapidez.</p>
-    </details>
-
-    <details class="faq-item">
-        <summary>É seguro usar este encurtador?</summary>
-        <p>Sim, 100% seguro.</p>
-    </details>
-
-    <details class="faq-item">
-        <summary>Como encurtar um link?</summary>
-        <p>Basta colar o link e clicar no botão.</p>
-    </details>
 </section>
 
 </main>
@@ -118,10 +105,37 @@
 
 <script src="script.js"></script>
 
-<!-- 🔥 SCRIPT NOVO (NÃO QUEBRA NADA) -->
+<!-- 🔥 SCRIPT SEGURO (SEM QUEBRAR SUA LÓGICA) -->
 <script>
 
-// ABRIR LINK GERADO FORA DO APP
+// VALIDAR URL
+function validarURL(url) {
+    try {
+        let u = new URL(url);
+        return u.protocol === "http:" || u.protocol === "https:";
+    } catch {
+        return false;
+    }
+}
+
+// VALIDAR AO CLICAR
+document.getElementById("shorten-btn").addEventListener("click", function(e) {
+    let input = document.getElementById("long-url-input").value;
+
+    if (!validarURL(input)) {
+        e.preventDefault();
+        alert("Digite uma URL válida! Ex: https://google.com");
+    }
+});
+
+// COPIAR
+function copiarLink() {
+    let texto = document.getElementById("short-url-output").value;
+    if (!texto) return;
+    navigator.clipboard.writeText(texto);
+}
+
+// ABRIR FORA DO APP
 function abrirLink() {
     let url = document.getElementById("short-url-output").value;
     if (!url) return;
@@ -137,7 +151,6 @@ document.addEventListener("click", function(e) {
 
     let url = link.href;
 
-    // mantém links internos normais
     if (url.includes("bgdv.online")) return;
 
     e.preventDefault();
