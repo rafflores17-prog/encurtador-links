@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BGDV LINKS | Premium Shortener</title>
     
-    <meta name="description" content="O melhor e mais rápido encurtador de links. Transforme URLs gigantes em links curtos, seguros e prontos para compartilhar direto do seu celular.">
-    <meta name="keywords" content="encurtador de links, bgdv, url curta, encurtar link, links seguros">
-    
+    <meta name="description" content="O melhor e mais rápido encurtador de links.">
+    <meta name="keywords" content="encurtador de links, bgdv, url curta">
+
     <link rel="manifest" href="/manifest.json">
     
     <meta name="theme-color" content="#0f172a">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="BGDV LINKS">
-    
-    <link rel="apple-touch-icon" href="/icon-512.png">
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -24,7 +20,7 @@
     <script>
       if (window.location.search.includes('mestre=on')) {
           localStorage.setItem('mestre_invisivel', 'ativo');
-          alert('Modo Mestre Ativado: Suas visitas não estão mais sendo contadas no Analytics!');
+          alert('Modo Mestre Ativado');
       }
       if (localStorage.getItem('mestre_invisivel') === 'ativo') {
           window['ga-disable-G-D5CWHDJZQM'] = true;
@@ -38,11 +34,9 @@
       gtag('js', new Date());
       gtag('config', 'G-D5CWHDJZQM');
     </script>
-
 </head>
-<body>
 
-    <script src="https://quge5.com/88/tag.min.js" data-zone="229177" async data-cfasync="false"></script>
+<body>
 
     <div class="app-container">
         <header>
@@ -51,6 +45,7 @@
         </header>
 
         <main>
+
             <div class="ad-unit top-ad">
                 <span style="font-size: 10px; color: #475569;">Publicidade Protegida</span>
             </div>
@@ -75,56 +70,38 @@
             </section>
 
             <section class="features-grid">
-                <div class="f-item">
-                    <span class="icon">⚡</span>
-                    <h4>RÁPIDO</h4>
-                </div>
-                <div class="f-item">
-                    <span class="icon">🛡️</span>
-                    <h4>SEGURO</h4>
-                </div>
-                <div class="f-item">
-                    <span class="icon">📱</span>
-                    <h4>MOBILE</h4>
-                </div>
+                <div class="f-item"><span class="icon">⚡</span><h4>RÁPIDO</h4></div>
+                <div class="f-item"><span class="icon">🛡️</span><h4>SEGURO</h4></div>
+                <div class="f-item"><span class="icon">📱</span><h4>MOBILE</h4></div>
             </section>
 
             <section class="faq-section">
                 <h3>Dúvidas Frequentes</h3>
-                
                 <details class="faq-item">
                     <summary>O que é o BGDV LINKS?</summary>
-                    <p>O BGDV Links é uma ferramenta premium projetada para encurtar URLs longas, tornando-as fáceis de compartilhar em redes sociais e apps de mensagem, com proteção avançada e redirecionamento ultrarrápido.</p>
+                    <p>Ferramenta para encurtar URLs com segurança.</p>
                 </details>
-                
                 <details class="faq-item">
-                    <summary>É seguro usar este encurtador?</summary>
-                    <p>Sim, 100% seguro! Nosso sistema possui proteção e escaneia as URLs originais para garantir a segurança de quem clica no seu link modificado ou arquivo de download.</p>
-                </details>
-
-                <details class="faq-item">
-                    <summary>Como encurtar um link?</summary>
-                    <p>Basta colar a sua URL gigante na caixa acima e clicar no botão verde. Em menos de 1 segundo, você receberá um link curto e limpo, pronto para ser copiado.</p>
+                    <summary>É seguro?</summary>
+                    <p>Sim, 100% seguro.</p>
                 </details>
             </section>
 
         </main>
 
         <footer>
-            <p>© 2026 BGDV LINKS - Todos os direitos reservados.</p>
+            <p>© 2026 BGDV LINKS</p>
             <nav>
-                <a href="/privacidade.html" style="color: #22c55e; text-decoration: none; font-size: 13px;">Privacidade</a> 
-                <span style="color: #334155;"> • </span> 
-                <a href="/termos.html" style="color: #22c55e; text-decoration: none; font-size: 13px;">Termos</a>
-                <span style="color: #334155;"> • </span> 
-                <a href="/dicas.html" style="color: #22c55e; text-decoration: none; font-size: 13px;">Dicas</a>
+                <a href="/privacidade.html">Privacidade</a> • 
+                <a href="/termos.html">Termos</a> • 
+                <a href="/dicas.html">Dicas</a>
             </nav>
         </footer>
     </div>
 
     <script src="script.js"></script>
 
-    <!-- 🔥 SCRIPT INTELIGENTE (NÃO QUEBRA NADA) -->
+    <!-- 🔥 SCRIPT QUE RESOLVE TUDO -->
     <script>
     document.addEventListener("click", function(e) {
         let link = e.target.closest("a");
@@ -132,15 +109,19 @@
 
         let url = link.href;
 
-        // ignora links internos (mesmo domínio)
+        // Se for interno, deixa normal
         if (url.includes("bgdv.online")) return;
 
-        // ignora âncoras ou vazios
-        if (url.startsWith("#") || url.trim() === "") return;
-
-        // abre externo no navegador
-        window.open(url, "_blank");
         e.preventDefault();
+
+        try {
+            // Força abrir no Chrome (Android)
+            let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
+            window.location.href = intent;
+        } catch (err) {
+            // fallback
+            window.location.href = url;
+        }
     });
     </script>
 
