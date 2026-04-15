@@ -1,219 +1,161 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BGDV LINKS | Premium</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <style>
-        /* Liberar o arrastar para baixo (Scroll) */
-        body, html {
-            overflow-y: auto !important; 
-            height: auto !important;
-            background-color: #0f172a;
-            color: white;
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+<title>BGDV LINKS | Premium Shortener</title>
 
-        .app-container {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+<meta name="description" content="O melhor e mais rápido encurtador de links.">
 
-        /* Estilo do Card Principal */
-        .main-card {
-            background: #1e293b;
-            padding: 20px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            margin-top: 20px;
-        }
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0f172a">
 
-        .input-group label {
-            color: #22c55e;
-            font-weight: bold;
-            font-size: 12px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 8px;
-        }
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
-        input {
-            width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #334155;
-            background: #0f172a;
-            color: white;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-        }
-
-        /* Botão Encurtar */
-        .glow-button {
-            width: 100%;
-            padding: 15px;
-            background: #22c55e;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
-        }
-
-        /* Área de Resultado corrigida */
-        #result-area {
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px dashed #3b82f6;
-            border-radius: 12px;
-        }
-
-        .copy-wrapper {
-            display: flex;
-            flex-direction: column; /* Coloca um embaixo do outro no celular para não bugar */
-            gap: 10px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .inner-copy, .btn-open {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-        }
-
-        .inner-copy { background: #3b82f6; }
-        .btn-open { background: #22c55e; }
-
-        /* FAQ */
-        .faq-section {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 30px;
-        }
-
-        details {
-            background: #1e293b;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-        }
-
-        summary { font-weight: bold; cursor: pointer; color: #3b82f6; }
-
-        .hidden { display: none; }
-
-        footer {
-            margin-top: auto;
-            padding: 30px 0;
-            text-align: center;
-            font-size: 12px;
-            color: #64748b;
-        }
-        
-        footer a { color: #22c55e; text-decoration: none; margin: 0 10px; }
-    </style>
 </head>
 
 <body>
 
 <div class="app-container">
-    <header style="text-align: center;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 0;">BGDV<span style="color:#22c55e">LINKS</span></h1>
-        <p style="color: #64748b;">O seu encurtador inteligente</p>
-    </header>
 
-    <main style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-        <section class="main-card">
-            <div class="input-group">
-                <label>Cole sua URL longa</label>
-                <input id="long-url-input" type="url" placeholder="https://t.me/ApkBugado" />
-            </div>
+<header>
+    <div class="logo">BGDV<span>LINKS</span></div>
+    <p class="tagline">O seu encurtador inteligente</p>
+</header>
 
-            <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
+<main>
 
-            <div id="result-area" class="hidden">
-                <p style="margin-top: 0; font-size: 14px;">Seu link curto pronto:</p>
-                <div class="copy-wrapper">
-                    <input type="text" id="short-url-output" readonly>
-                    <div class="btn-group">
-                        <button onclick="copiarLink()" class="inner-copy">Copiar</button>
-                        <button onclick="abrirLink()" class="btn-open">Abrir</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="faq-section">
-            <details>
-                <summary>O link é permanente?</summary>
-                <p>Sim! Os links gerados no BGDV LINKS não expiram.</p>
-            </details>
-            <details>
-                <summary>Como funciona?</summary>
-                <p>Nós transformamos seu link gigante em um link curto e seguro para seus inscritos.</p>
-            </details>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2026 BGDV LINKS - Todos os direitos reservados.</p>
-        <div style="margin-top: 10px;">
-            <a href="/privacidade.html">Privacidade</a> • 
-            <a href="/termos.html">Termos</a> • 
-            <a href="/dicas.html">Dicas</a>
-        </div>
-    </footer>
+<div class="ad-unit top-ad">
+    <span style="font-size: 10px; color: #475569;">Publicidade Protegida</span>
 </div>
 
+<section class="main-card">
+
+<div class="input-group">
+    <label>Cole sua URL longa</label>
+    <input id="long-url-input" type="url" placeholder="https://exemplo.com/link-gigante" />
+</div>
+
+<button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
+
+<div id="result-area" class="hidden animate-in">
+    <div class="result-box">
+        <label>Seu link curto pronto:</label>
+
+        <div class="copy-wrapper">
+            <input type="text" id="short-url-output" readonly>
+
+            <button onclick="copiarLink()" class="inner-copy">Copiar</button>
+
+            <!-- BOTÃO EXTRA SEM QUEBRAR -->
+            <button onclick="abrirLink()" class="inner-copy">Abrir</button>
+        </div>
+    </div>
+</div>
+
+</section>
+
+<section class="features-grid">
+    <div class="f-item"><span class="icon">⚡</span><h4>RÁPIDO</h4></div>
+    <div class="f-item"><span class="icon">🛡️</span><h4>SEGURO</h4></div>
+    <div class="f-item"><span class="icon">📱</span><h4>MOBILE</h4></div>
+</section>
+
+<section class="faq-section">
+    <h3>Dúvidas Frequentes</h3>
+
+    <details class="faq-item">
+        <summary>O que é o BGDV LINKS?</summary>
+        <p>Ferramenta premium para encurtar URLs com segurança e rapidez.</p>
+    </details>
+
+    <details class="faq-item">
+        <summary>É seguro usar este encurtador?</summary>
+        <p>Sim, 100% seguro.</p>
+    </details>
+
+    <details class="faq-item">
+        <summary>Como encurtar um link?</summary>
+        <p>Basta colar o link e clicar no botão.</p>
+    </details>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 BGDV LINKS - Todos os direitos reservados.</p>
+
+<nav>
+<a href="/privacidade.html">Privacidade</a> • 
+<a href="/termos.html">Termos</a> • 
+<a href="/dicas.html">Dicas</a>
+</nav>
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+
+<!-- 🔥 SCRIPT FINAL (BLINDADO) -->
 <script>
-    const shortenBtn = document.getElementById("shorten-btn");
-    const resultArea = document.getElementById("result-area");
-    const longUrlInput = document.getElementById("long-url-input");
-    const shortUrlOutput = document.getElementById("short-url-output");
 
-    shortenBtn.addEventListener("click", function() {
-        let url = longUrlInput.value.trim();
-        if (url === "") { alert("Cole um link!"); return; }
+// VALIDAR SEM QUEBRAR
+document.addEventListener("click", function(e) {
+    let btn = e.target.closest("#shorten-btn");
+    if (!btn) return;
 
-        // Gerar ID aleatório sem espaços (para não dar erro de link não encontrado)
-        let id = Math.random().toString(36).substring(2, 8);
-        
-        shortUrlOutput.value = "bgdv.online/" + id;
-        resultArea.classList.remove("hidden");
-    });
+    let input = document.getElementById("long-url-input").value;
 
-    function copiarLink() {
-        shortUrlOutput.select();
-        navigator.clipboard.writeText(shortUrlOutput.value);
-        alert("Link copiado!");
+    try {
+        let url = new URL(input);
+        if (!url.protocol.startsWith("http")) {
+            alert("Digite um link válido!");
+            e.preventDefault();
+        }
+    } catch {
+        alert("Digite um link válido!");
+        e.preventDefault();
     }
+});
 
-    function abrirLink() {
-        let url = shortUrlOutput.value;
-        if (!url) return;
-        // Força a abertura no Chrome para evitar bugs dentro de webviews
-        let intent = "intent://" + url + "#Intent;scheme=https;package=com.android.chrome;end";
-        window.location.href = intent;
+// COPIAR AUTOMÁTICO SEM QUEBRAR
+let lastValue = "";
+setInterval(() => {
+    let el = document.getElementById("short-url-output");
+    if (!el) return;
+
+    if (el.value && el.value !== lastValue) {
+        lastValue = el.value;
+        navigator.clipboard.writeText(el.value);
     }
+}, 1000);
+
+// ABRIR FORA DO APP
+function abrirLink() {
+    let url = document.getElementById("short-url-output").value;
+    if (!url) return;
+
+    let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
+    window.location.href = intent;
+}
+
+// LINKS EXTERNOS
+document.addEventListener("click", function(e) {
+    let link = e.target.closest("a");
+    if (!link) return;
+
+    let url = link.href;
+
+    if (url.includes("bgdv.online")) return;
+
+    e.preventDefault();
+
+    let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
+    window.location.href = intent;
+});
+
 </script>
 
 </body>
