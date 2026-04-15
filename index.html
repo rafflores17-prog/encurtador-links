@@ -1,112 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BGDV LINKS | Premium Shortener</title>
+    <link rel="stylesheet" href="style.css">
 
-<title>BGDV LINKS | Premium Shortener</title>
+    <style>
+        /* Ajustes de Layout */
+        .copy-wrapper {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            align-items: center;
+        }
 
-<link rel="stylesheet" href="style.css">
+        .copy-wrapper input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: #fff;
+            font-size: 14px;
+        }
 
-<style>
+        .btn-open {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-/* 🔥 CAIXA MAIS BONITA SEM QUEBRAR LAYOUT */
-.copy-wrapper {
-    display: flex;
-    gap: 6px;
-    margin-top: 6px;
-}
+        .inner-copy {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-.copy-wrapper input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #334155;
-}
+        .slug-input {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            width: 100%;
+            background: #1e293b;
+            color: #fff;
+            box-sizing: border-box;
+        }
 
-/* BOTÃO ABRIR */
-.btn-open {
-    background: linear-gradient(135deg, #22c55e, #16a34a);
-    border: none;
-    color: white;
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
+        /* Classe para esconder/mostrar */
+        .hidden { display: none; }
+        
+        .animate-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-/* INPUT SLUG */
-.slug-input {
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #334155;
-    width: 100%;
-}
-
-</style>
-
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="app-container">
+    <header>
+        <div class="logo">BGDV<span>LINKS</span></div>
+        <p class="tagline">O seu encurtador inteligente</p>
+    </header>
 
-<header>
-    <div class="logo">BGDV<span>LINKS</span></div>
-    <p class="tagline">O seu encurtador inteligente</p>
-</header>
+    <main>
+        <section class="main-card">
+            <div class="input-group">
+                <label>Cole sua URL longa</label>
+                <input id="long-url-input" type="url" placeholder="https://exemplo.com" required />
+            </div>
 
-<main>
+            <input id="slug-input" class="slug-input" placeholder="Personalizar link (opcional) ex: meu-link">
 
-<section class="main-card">
+            <button id="shorten-btn" class="glow-button" style="width: 100%; margin-top: 15px; padding: 15px; border-radius: 8px; cursor: pointer;">
+                ENCURTAR LINK
+            </button>
 
-<div class="input-group">
-    <label>Cole sua URL longa</label>
-    <input id="long-url-input" type="url" placeholder="https://exemplo.com" />
+            <div id="result-area" class="hidden animate-in">
+                <div class="result-box" style="margin-top: 20px; padding: 15px; border: 1px dashed #3b82f6; border-radius: 10px;">
+                    <label style="display: block; margin-bottom: 5px;">Seu link curto pronto:</label>
+                    <div class="copy-wrapper">
+                        <input type="text" id="short-url-output" readonly>
+                        <button onclick="copiarLink()" class="inner-copy">Copiar</button>
+                        <button onclick="abrirLink()" class="btn-open">Abrir</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 BGDV LINKS - Todos os direitos reservados.</p>
+        <nav>
+            <a href="/privacidade.html">Privacidade</a> • 
+            <a href="/termos.html">Termos</a> • 
+            <a href="/dicas.html">Dicas</a>
+        </nav>
+    </footer>
 </div>
 
-<!-- 🔥 NOVO (OPCIONAL) -->
-<input id="slug-input" class="slug-input" placeholder="Personalizar link (opcional) ex: meu-link">
-
-<button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
-
-<div id="result-area" class="hidden animate-in">
-    <div class="result-box">
-
-        <label>Seu link curto pronto:</label>
-
-        <div class="copy-wrapper">
-            <input type="text" id="short-url-output" readonly>
-
-            <button onclick="copiarLink()" class="inner-copy">Copiar</button>
-
-            <button onclick="abrirLink()" class="btn-open">Abrir</button>
-        </div>
-
-    </div>
-</div>
-
-</section>
-
-</main>
-
-<footer>
-<p>© 2026 BGDV LINKS - Todos os direitos reservados.</p>
-
-<nav>
-<a href="/privacidade.html">Privacidade</a> • 
-<a href="/termos.html">Termos</a> • 
-<a href="/dicas.html">Dicas</a>
-</nav>
-</footer>
-
-</div>
-
-<script src="script.js"></script>
-
-<!-- 🔥 SCRIPT SEGURO (SEM QUEBRAR SUA LÓGICA) -->
 <script>
+// --- LÓGICA PRINCIPAL ---
+
+const shortenBtn = document.getElementById("shorten-btn");
+const resultArea = document.getElementById("result-area");
+const longUrlInput = document.getElementById("long-url-input");
+const slugInput = document.getElementById("slug-input");
+const shortUrlOutput = document.getElementById("short-url-output");
 
 // VALIDAR URL
 function validarURL(url) {
@@ -118,47 +134,62 @@ function validarURL(url) {
     }
 }
 
-// VALIDAR AO CLICAR
-document.getElementById("shorten-btn").addEventListener("click", function(e) {
-    let input = document.getElementById("long-url-input").value;
+// AÇÃO DE ENCURTAR
+shortenBtn.addEventListener("click", function() {
+    let url = longUrlInput.value.trim();
+    let slug = slugInput.value.trim();
 
-    if (!validarURL(input)) {
-        e.preventDefault();
-        alert("Digite uma URL válida! Ex: https://google.com");
+    if (!validarURL(url)) {
+        alert("Por favor, insira uma URL válida!");
+        return;
     }
+
+    // Lógica para gerar o link (Aqui você integraria com seu backend/API)
+    // Se for apenas front-end por enquanto, simulamos:
+    let base = "bgdv.online/";
+    let finalSlug = slug !== "" ? slug : Math.random().toString(36).substring(2, 7);
+    
+    shortUrlOutput.value = base + finalSlug;
+    
+    // Mostra o resultado
+    resultArea.classList.remove("hidden");
 });
 
 // COPIAR
 function copiarLink() {
-    let texto = document.getElementById("short-url-output").value;
-    if (!texto) return;
-    navigator.clipboard.writeText(texto);
+    shortUrlOutput.select();
+    navigator.clipboard.writeText(shortUrlOutput.value);
+    alert("Link copiado com sucesso!");
 }
 
-// ABRIR FORA DO APP
+// ABRIR NO CHROME (FORÇAR INTENT)
 function abrirLink() {
-    let url = document.getElementById("short-url-output").value;
+    let url = shortUrlOutput.value;
     if (!url) return;
-
-    let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
+    
+    // Adiciona o protocolo se não tiver
+    let linkCompleto = url.startsWith('http') ? url : 'https://' + url;
+    
+    // Intent para abrir diretamente no Chrome do Android
+    let intent = "intent://" + linkCompleto.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
     window.location.href = intent;
 }
 
-// INTERCEPTAR LINKS EXTERNOS
+// INTERCEPTAR LINKS EXTERNOS DO RODAPÉ (OPCIONAL)
 document.addEventListener("click", function(e) {
     let link = e.target.closest("a");
     if (!link) return;
+    
+    // Se o link for interno (termos, dicas, etc), deixa o navegador abrir normal
+    if (link.getAttribute('href').startsWith('/') || link.href.includes("bgdv.online")) {
+        return;
+    }
 
-    let url = link.href;
-
-    if (url.includes("bgdv.online")) return;
-
+    // Se for link externo, força o Chrome
     e.preventDefault();
-
-    let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
+    let intent = "intent://" + link.href.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
     window.location.href = intent;
 });
-
 </script>
 
 </body>
