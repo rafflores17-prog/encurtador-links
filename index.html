@@ -1,129 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BGDV LINKS | Premium Shortener</title>
-    
-    <meta name="description" content="O melhor e mais rápido encurtador de links.">
-    <meta name="keywords" content="encurtador de links, bgdv, url curta">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGDV LINKS | Premium Shortener</title>
 
-    <link rel="manifest" href="/manifest.json">
-    
-    <meta name="theme-color" content="#0f172a">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Encurtador de links rápido, seguro e profissional.">
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0f172a">
 
-    <script>
-      if (window.location.search.includes('mestre=on')) {
-          localStorage.setItem('mestre_invisivel', 'ativo');
-          alert('Modo Mestre Ativado');
-      }
-      if (localStorage.getItem('mestre_invisivel') === 'ativo') {
-          window['ga-disable-G-D5CWHDJZQM'] = true;
-      }
-    </script>
+<!-- CSS com versão (ANTI BUG CACHE) -->
+<link rel="stylesheet" href="style.css?v=3">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5CWHDJZQM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-D5CWHDJZQM');
-    </script>
+<!-- Fonte -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-    <div class="app-container">
-        <header>
-            <div class="logo">BGDV<span>LINKS</span></div>
-            <p class="tagline">O seu encurtador inteligente</p>
-        </header>
+<div class="app-container">
 
-        <main>
+<header>
+  <div class="logo">BGDV<span>LINKS</span></div>
+  <p class="tagline">Encurtador inteligente e rápido</p>
+</header>
 
-            <div class="ad-unit top-ad">
-                <span style="font-size: 10px; color: #475569;">Publicidade Protegida</span>
-            </div>
+<main>
 
-            <section class="main-card">
-                <div class="input-group">
-                    <label>Cole sua URL longa</label>
-                    <input id="long-url-input" type="url" placeholder="https://exemplo.com/link-gigante" />
-                </div>
-                
-                <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
+<section class="main-card">
 
-                <div id="result-area" class="hidden animate-in">
-                    <div class="result-box">
-                        <label>Seu link curto pronto:</label>
-                        <div class="copy-wrapper">
-                            <input type="text" id="short-url-output" readonly>
-                            <button onclick="copiarLink()" class="inner-copy">Copiar</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+  <div class="input-group">
+    <label>Cole sua URL</label>
+    <input id="long-url-input" type="url" placeholder="https://exemplo.com">
+  </div>
 
-            <section class="features-grid">
-                <div class="f-item"><span class="icon">⚡</span><h4>RÁPIDO</h4></div>
-                <div class="f-item"><span class="icon">🛡️</span><h4>SEGURO</h4></div>
-                <div class="f-item"><span class="icon">📱</span><h4>MOBILE</h4></div>
-            </section>
+  <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
 
-            <section class="faq-section">
-                <h3>Dúvidas Frequentes</h3>
-                <details class="faq-item">
-                    <summary>O que é o BGDV LINKS?</summary>
-                    <p>Ferramenta para encurtar URLs com segurança.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>É seguro?</summary>
-                    <p>Sim, 100% seguro.</p>
-                </details>
-            </section>
+  <div id="result-area" class="hidden">
+    <input type="text" id="short-url-output" readonly>
+    <button onclick="copiarLink()">COPIAR</button>
+  </div>
 
-        </main>
+</section>
 
-        <footer>
-            <p>© 2026 BGDV LINKS</p>
-            <nav>
-                <a href="/privacidade.html">Privacidade</a> • 
-                <a href="/termos.html">Termos</a> • 
-                <a href="/dicas.html">Dicas</a>
-            </nav>
-        </footer>
-    </div>
+</main>
 
-    <script src="script.js"></script>
+<footer>
+  <p>© 2026 BGDV LINKS</p>
+</footer>
 
-    <!-- 🔥 SCRIPT QUE RESOLVE TUDO -->
-    <script>
-    document.addEventListener("click", function(e) {
-        let link = e.target.closest("a");
-        if (!link) return;
+</div>
 
-        let url = link.href;
+<!-- SCRIPT com versão -->
+<script src="script.js?v=3"></script>
 
-        // Se for interno, deixa normal
-        if (url.includes("bgdv.online")) return;
-
-        e.preventDefault();
-
-        try {
-            // Força abrir no Chrome (Android)
-            let intent = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
-            window.location.href = intent;
-        } catch (err) {
-            // fallback
-            window.location.href = url;
+<!-- REGISTRO SW CORRIGIDO -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(reg => {
+    reg.onupdatefound = () => {
+      const newWorker = reg.installing;
+      newWorker.onstatechange = () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          location.reload();
         }
-    });
-    </script>
+      };
+    };
+  });
+}
+</script>
 
 </body>
 </html>
