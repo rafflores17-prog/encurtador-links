@@ -3,20 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BGDV LINKS | Premium Shortener</title>
+<title>BGDV LINKS | Encurtador Profissional</title>
 
-<meta name="description" content="Encurtador de links rápido, seguro e gratuito.">
+<meta name="description" content="Encurte links de forma rápida, segura e gratuita. Compartilhe URLs curtas em segundos com o BGDV LINKS.">
 
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0f172a">
 
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=10">
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
-<!-- Monetag -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="229177" async data-cfasync="false"></script>
-
+<script src="https://quge5.com/88/tag.min.js" data-zone="229177" async></script>
 </head>
 
 <body>
@@ -25,87 +23,78 @@
 
 <header>
   <div class="logo">BGDV<span>LINKS</span></div>
-  <p class="tagline">Encurtador inteligente e rápido</p>
+  <p class="tagline">Encurte, compartilhe e acompanhe seus links</p>
 </header>
 
 <main>
 
 <section class="main-card">
 
-  <div class="input-group">
-    <label>COLE SUA URL</label>
-    <input id="long-url-input" type="url" placeholder="https://exemplo.com">
-  </div>
+  <label>COLE SUA URL</label>
+  <input id="long-url-input" type="url" placeholder="https://exemplo.com">
 
   <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
 
-  <div id="result-area" class="hidden animate-in">
-    <div class="copy-wrapper">
+  <div id="result-area" class="hidden">
+
+    <div class="result-box animate-pop">
+
       <input type="text" id="short-url-output" readonly>
-      <button onclick="copiarLink()" class="inner-copy">
-        <span id="copyText">COPIAR</span>
+
+      <button onclick="copiarLink()" id="copyBtn">
+        <span id="copyText">Copiar link</span>
       </button>
+
     </div>
+
+    <div id="stats" class="stats hidden">
+      👁️ <span id="clicks">0</span> cliques
+    </div>
+
   </div>
 
 </section>
 
 <section class="features-grid">
-  <div class="f-item"><span class="icon">⚡</span><h4>RÁPIDO</h4></div>
-  <div class="f-item"><span class="icon">🔒</span><h4>SEGURO</h4></div>
-  <div class="f-item"><span class="icon">💯</span><h4>GRÁTIS</h4></div>
+  <div class="f-item">⚡ <span>Rápido</span></div>
+  <div class="f-item">🔒 <span>Seguro</span></div>
+  <div class="f-item">💯 <span>Gratuito</span></div>
 </section>
 
 <section class="about">
   <h3>Como funciona?</h3>
-  <p>Você cola um link longo, clica em encurtar e recebe um link curto pronto para compartilhar.</p>
+  <p>Insira qualquer link longo, clique em encurtar e receba uma URL curta pronta para compartilhar em segundos.</p>
+  <p>Ideal para redes sociais, Telegram, WhatsApp e muito mais.</p>
 </section>
 
 <section class="faq-section">
-  <h3>DÚVIDAS FREQUENTES</h3>
+  <h3>Dúvidas frequentes</h3>
 
   <details class="faq-item">
     <summary>Precisa criar conta?</summary>
-    <p>Não. Uso 100% gratuito.</p>
+    <p>Não. Uso totalmente gratuito e sem cadastro.</p>
   </details>
 
   <details class="faq-item">
-    <summary>Funciona no celular?</summary>
-    <p>Sim, totalmente otimizado.</p>
+    <summary>Os links expiram?</summary>
+    <p>Não. Seus links permanecem ativos.</p>
   </details>
 
 </section>
 
 </main>
 
-<div class="footer-toggle" onclick="toggleFooter()">ℹ️ Informações</div>
-
-<footer id="footerBox">
-  <p>© 2026 BGDV LINKS</p>
-  <nav>
-    <a href="/privacidade.html">Privacidade</a> • 
+<footer class="footer-fixed">
+  <div>© 2026 BGDV LINKS</div>
+  <div class="footer-links">
+    <a href="/privacidade.html">Privacidade</a>
     <a href="/termos.html">Termos</a>
-  </nav>
+  </div>
 </footer>
 
 </div>
 
-<script src="script.js?v=5"></script>
-
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(reg => {
-    reg.onupdatefound = () => {
-      const newWorker = reg.installing;
-      newWorker.onstatechange = () => {
-        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-          location.reload();
-        }
-      };
-    };
-  });
-}
-</script>
+<script src="script.js?v=10"></script>
 
 </body>
 </html>
