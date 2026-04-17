@@ -34,13 +34,14 @@ shortenBtn.addEventListener('click', async () => {
   shortenBtn.disabled = false;
 });
 
-// COPY PROFISSIONAL
+/* 🔥 COPY PROFISSIONAL */
 window.copiarLink = async function () {
   const btn = document.querySelector('.inner-copy');
   const text = document.getElementById('copyText');
 
   try {
     await navigator.clipboard.writeText(shortUrlOutput.value);
+
     btn.classList.add("copied");
     text.innerText = "COPIADO";
 
@@ -54,7 +55,7 @@ window.copiarLink = async function () {
   }
 };
 
-// FOOTER
+/* 🔥 FOOTER */
 function toggleFooter() {
   document.getElementById("footerBox").classList.toggle("active");
 }
