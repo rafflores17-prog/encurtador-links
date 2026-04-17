@@ -1,27 +1,40 @@
-// === SEU CÓDIGO DO PWA (Cache e Instalação) ===
-const CACHE_NAME = 'bgdv-links-v1';
-const assets = ['/', '/index.html', '/style.css', '/script.js'];
+const CACHE_NAME = "bgdv-v3";
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(assets);
-    })
+const ASSETS = [
+  "/",
+  "/index.html",
+  "/style.css",
+  "/script.js"
+];
+
+self.addEventListener("install", (e) => {
+  self.skipWaiting();
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
 });
 
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+self.addEventListener("activate", (e) => {
+  e.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.map(key => key !== CACHE_NAME && caches.delete(key))
+      )
+    )
   );
+  self.clients.claim();
 });
 
-// === CÓDIGO DA MONETAG (Adicionado no final) ===
-self.options = {
-    "domain": "5gvci.com",
-    "zoneId": 10868948
-};
-self.lary = "";
-importScripts('https://5gvci.com/act/files/service-worker.min.js?r=sw');
+self.addEventListener("fetch", (e) => {
+  if (e.request.url.includes("/encurtar")) return;
+
+  e.respondWith(
+    fetch(e.request)
+      .then(res => {
+        const clone = res.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
+        return res;
+      })
+      .catch(() => caches.match(e.request))
+  );
+});
