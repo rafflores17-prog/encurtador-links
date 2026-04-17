@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BGDV LINKS | Premium Shortener</title>
 
-<meta name="description" content="Encurtador de links rápido, seguro e profissional.">
+<meta name="description" content="Encurtador de links rápido, seguro e gratuito.">
 
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0f172a">
 
-<!-- CSS com versão (ANTI BUG CACHE) -->
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 
-<!-- Fonte -->
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- MONETAG (CORRETO) -->
+<script src="https://quge5.com/88/tag.min.js" data-zone="229177" async data-cfasync="false"></script>
 
 </head>
 
@@ -32,16 +33,63 @@
 <section class="main-card">
 
   <div class="input-group">
-    <label>Cole sua URL</label>
+    <label>COLE SUA URL</label>
     <input id="long-url-input" type="url" placeholder="https://exemplo.com">
   </div>
 
   <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
 
   <div id="result-area" class="hidden">
-    <input type="text" id="short-url-output" readonly>
-    <button onclick="copiarLink()">COPIAR</button>
+    
+    <div class="copy-box">
+      <input type="text" id="short-url-output" readonly>
+
+      <button onclick="copiarLink()" class="copy-btn">
+        <span id="copy-text">COPIAR</span>
+      </button>
+    </div>
+
   </div>
+
+</section>
+
+<!-- 🔥 BENEFÍCIOS -->
+<section class="features">
+  <div>⚡ Rápido</div>
+  <div>🔒 Seguro</div>
+  <div>💯 Gratuito</div>
+</section>
+
+<!-- 🔥 EXPLICAÇÃO -->
+<section class="about">
+  <h3>Como funciona?</h3>
+  <p>Você cola um link longo, clica em encurtar e recebe um link curto pronto para compartilhar em segundos.</p>
+
+  <h3>É seguro?</h3>
+  <p>Sim. Seus links são processados com segurança e rapidez.</p>
+
+  <h3>É grátis?</h3>
+  <p>Totalmente gratuito, sem limite básico de uso.</p>
+</section>
+
+<!-- 🔥 FAQ -->
+<section class="faq">
+  <h3>Dúvidas Frequentes</h3>
+
+  <details>
+    <summary>Precisa criar conta?</summary>
+    <p>Não, você pode usar gratuitamente sem cadastro.</p>
+  </details>
+
+  <details>
+    <summary>Funciona no celular?</summary>
+    <p>Sim, funciona perfeitamente em qualquer dispositivo.</p>
+  </details>
+
+  <details>
+    <summary>Posso usar em redes sociais?</summary>
+    <p>Sim, ideal para WhatsApp, Telegram, TikTok e mais.</p>
+  </details>
 
 </section>
 
@@ -49,14 +97,16 @@
 
 <footer>
   <p>© 2026 BGDV LINKS</p>
+  <nav>
+    <a href="/privacidade.html">Privacidade</a> • 
+    <a href="/termos.html">Termos</a>
+  </nav>
 </footer>
 
 </div>
 
-<!-- SCRIPT com versão -->
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 
-<!-- REGISTRO SW CORRIGIDO -->
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').then(reg => {
