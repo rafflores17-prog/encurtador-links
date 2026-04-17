@@ -24,11 +24,9 @@ shortenBtn.addEventListener('click', async () => {
     if (data.link_curto) {
       shortUrlOutput.value = data.link_curto;
       resultArea.classList.remove('hidden');
-    } else {
-      alert('Erro ao gerar link');
     }
 
-  } catch (e) {
+  } catch {
     alert('Erro de conexão');
   }
 
@@ -36,11 +34,27 @@ shortenBtn.addEventListener('click', async () => {
   shortenBtn.disabled = false;
 });
 
+// COPY PROFISSIONAL
 window.copiarLink = async function () {
+  const btn = document.querySelector('.inner-copy');
+  const text = document.getElementById('copyText');
+
   try {
     await navigator.clipboard.writeText(shortUrlOutput.value);
-    alert("Copiado!");
+    btn.classList.add("copied");
+    text.innerText = "COPIADO";
+
+    setTimeout(() => {
+      btn.classList.remove("copied");
+      text.innerText = "COPIAR";
+    }, 2000);
+
   } catch {
     alert("Erro ao copiar");
   }
 };
+
+// FOOTER
+function toggleFooter() {
+  document.getElementById("footerBox").classList.toggle("active");
+}
