@@ -10,11 +10,11 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0f172a">
 
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
-<!-- MONETAG (CORRETO) -->
+<!-- Monetag -->
 <script src="https://quge5.com/88/tag.min.js" data-zone="229177" async data-cfasync="false"></script>
 
 </head>
@@ -39,63 +39,48 @@
 
   <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
 
-  <div id="result-area" class="hidden">
-    
-    <div class="copy-box">
+  <div id="result-area" class="hidden animate-in">
+    <div class="copy-wrapper">
       <input type="text" id="short-url-output" readonly>
-
-      <button onclick="copiarLink()" class="copy-btn">
-        <span id="copy-text">COPIAR</span>
+      <button onclick="copiarLink()" class="inner-copy">
+        <span id="copyText">COPIAR</span>
       </button>
     </div>
-
   </div>
 
 </section>
 
-<!-- 🔥 BENEFÍCIOS -->
-<section class="features">
-  <div>⚡ Rápido</div>
-  <div>🔒 Seguro</div>
-  <div>💯 Gratuito</div>
+<section class="features-grid">
+  <div class="f-item"><span class="icon">⚡</span><h4>RÁPIDO</h4></div>
+  <div class="f-item"><span class="icon">🔒</span><h4>SEGURO</h4></div>
+  <div class="f-item"><span class="icon">💯</span><h4>GRÁTIS</h4></div>
 </section>
 
-<!-- 🔥 EXPLICAÇÃO -->
 <section class="about">
   <h3>Como funciona?</h3>
-  <p>Você cola um link longo, clica em encurtar e recebe um link curto pronto para compartilhar em segundos.</p>
-
-  <h3>É seguro?</h3>
-  <p>Sim. Seus links são processados com segurança e rapidez.</p>
-
-  <h3>É grátis?</h3>
-  <p>Totalmente gratuito, sem limite básico de uso.</p>
+  <p>Você cola um link longo, clica em encurtar e recebe um link curto pronto para compartilhar.</p>
 </section>
 
-<!-- 🔥 FAQ -->
-<section class="faq">
-  <h3>Dúvidas Frequentes</h3>
+<section class="faq-section">
+  <h3>DÚVIDAS FREQUENTES</h3>
 
-  <details>
+  <details class="faq-item">
     <summary>Precisa criar conta?</summary>
-    <p>Não, você pode usar gratuitamente sem cadastro.</p>
+    <p>Não. Uso 100% gratuito.</p>
   </details>
 
-  <details>
+  <details class="faq-item">
     <summary>Funciona no celular?</summary>
-    <p>Sim, funciona perfeitamente em qualquer dispositivo.</p>
-  </details>
-
-  <details>
-    <summary>Posso usar em redes sociais?</summary>
-    <p>Sim, ideal para WhatsApp, Telegram, TikTok e mais.</p>
+    <p>Sim, totalmente otimizado.</p>
   </details>
 
 </section>
 
 </main>
 
-<footer>
+<div class="footer-toggle" onclick="toggleFooter()">ℹ️ Informações</div>
+
+<footer id="footerBox">
   <p>© 2026 BGDV LINKS</p>
   <nav>
     <a href="/privacidade.html">Privacidade</a> • 
@@ -105,7 +90,7 @@
 
 </div>
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 
 <script>
 if ('serviceWorker' in navigator) {
