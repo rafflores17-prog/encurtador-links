@@ -6,11 +6,11 @@
 
 <title>Encurtador de Links Grátis e Rápido | Criar URL Curta - BGDV</title>
 
-<meta name="description" content="Encurte links rapidamente com o BGDV. Crie URLs curtas grátis, sem cadastro e com segurança. Ideal para WhatsApp, Telegram e redes sociais.">
-
-<link rel="canonical" href="https://bgdv.online/">
+<meta name="description" content="Encurte links de forma rápida, segura e gratuita. Crie URLs curtas e compartilhe facilmente.">
 
 <meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://bgdv.online/">
 
 <link rel="stylesheet" href="style.css?v=20">
 
@@ -21,44 +21,69 @@
 <div class="app-container">
 
 <header>
-  <h1>Encurtador de Links Grátis</h1>
-  <p>Crie URLs curtas rápidas e seguras para compartilhar em qualquer lugar.</p>
+  <div class="logo">BGDV<span>LINKS</span></div>
+  <p class="tagline">Encurte, compartilhe e acompanhe seus links</p>
 </header>
 
 <main>
 
 <section class="main-card">
 
-  <input id="long-url-input" type="url" placeholder="Cole seu link aqui">
+  <label>COLE SUA URL</label>
+  <input id="long-url-input" type="url" placeholder="https://exemplo.com">
 
-  <button id="shorten-btn">ENCURTAR LINK</button>
+  <button id="shorten-btn" class="glow-button">ENCURTAR LINK</button>
 
   <div id="result-area" class="hidden">
-    <input type="text" id="short-url-output" readonly>
+
+    <div class="result-box">
+
+      <input type="text" id="short-url-output" readonly>
+
+      <button onclick="copiarLink()">
+        Copiar link
+      </button>
+
+    </div>
+
   </div>
 
 </section>
 
-<section>
+<section class="features-grid">
+  <div class="f-item">⚡ <span>Rápido</span></div>
+  <div class="f-item">🔒 <span>Seguro</span></div>
+  <div class="f-item">💯 <span>Gratuito</span></div>
+</section>
+
+<section class="about">
   <h2>O que é um encurtador de links?</h2>
   <p>Um encurtador transforma URLs longas em links curtos e fáceis de compartilhar.</p>
 
-  <h2>Por que usar?</h2>
-  <ul>
-    <li>Melhora aparência do link</li>
-    <li>Facilita compartilhamento</li>
-    <li>Ideal para WhatsApp e redes sociais</li>
-  </ul>
-
-  <h2>Como encurtar um link</h2>
-  <p>Cole sua URL acima, clique em encurtar e copie o link gerado.</p>
+  <h2>Como funciona?</h2>
+  <p>Insira seu link, clique em encurtar e receba uma URL pronta para uso.</p>
 </section>
 
-<section>
-  <h2>Páginas úteis</h2>
-  <a href="/como-encurtar-link-whatsapp.html">Como encurtar link para WhatsApp</a><br>
-  <a href="/melhor-encurtador-links-2026.html">Melhor encurtador 2026</a>
+<section class="faq-section">
+  <h2>Dúvidas frequentes</h2>
+
+  <details>
+    <summary>Precisa criar conta?</summary>
+    <p>Não. É totalmente gratuito.</p>
+  </details>
+
+  <details>
+    <summary>Os links expiram?</summary>
+    <p>Não. Permanecem ativos.</p>
+  </details>
+
 </section>
+
+<!-- LINKS INTERNOS (SEO REAL) -->
+<div style="margin-top:20px; text-align:center;">
+  <a href="/como-encurtar-link-whatsapp.html">WhatsApp</a> |
+  <a href="/melhor-encurtador-links-2026.html">Melhor encurtador</a>
+</div>
 
 </main>
 
