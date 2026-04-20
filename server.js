@@ -3,10 +3,6 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// ⚠️ Node 18+ NÃO precisa de node-fetch
-// se der erro, descomenta:
-// import fetch from "node-fetch";
-
 const app = express();
 
 // Corrige __dirname
@@ -20,7 +16,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
 /* =========================
-   🚫 DESATIVAR CACHE (IMPORTANTE)
+   🚫 DESATIVAR CACHE
 ========================= */
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store");
@@ -103,4 +99,53 @@ app.get("/encurtar", async (req, res) => {
     return res.json({ link_curto: linkCurto });
 
   } catch (err) {
-    console.error("Erro
+    console.error("Erro geral:", err);
+
+    return res.status(500).json({
+      erro: "Erro no servidor"
+    });
+  }
+});
+
+/* =========================
+   🔁 REDIRECIONAR LINK CURTO
+========================= */
+app.get("/:codigo", async (req, res) => {
+  const codigo = req.params.codigo;
+
+  if (codigo.includes(".")) {
+    return res.status(404).send("Página não encontrada");
+  }
+
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/links?codigo_curto=eq.${encodeURIComponent(codigo)}&select=url_longa`,
+      {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Accept: "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.length > 0) {
+      return res.redirect(data[0].url_longa);
+    } else {
+      return res.status(404).send("Link não encontrado");
+    }
+
+  } catch (err) {
+    console.error("Erro redirect:", err);
+    return res.status(500).send("Erro no servidor");
+  }
+});
+
+/* =========================
+   🚀 START
+========================= */
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+});
