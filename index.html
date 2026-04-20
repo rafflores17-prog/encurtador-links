@@ -6,13 +6,20 @@
 
 <title>Encurtador de Links Grátis e Rápido | Criar URL Curta - BGDV</title>
 
-<meta name="description" content="Encurte links de forma rápida, segura e gratuita. Crie URLs curtas e compartilhe facilmente.">
+<meta name="description" content="Encurte links de forma rápida, segura e gratuita. Crie URLs curtas e compartilhe facilmente com o BGDV LINKS.">
+
+<meta name="keywords" content="encurtador de links, link curto, url curta, gerar link, encurtar link grátis">
 
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://bgdv.online/">
 
-<link rel="stylesheet" href="style.css?v=20">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0f172a">
+
+<link rel="stylesheet" href="style.css?v=12">
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
 
@@ -36,14 +43,18 @@
 
   <div id="result-area" class="hidden">
 
-    <div class="result-box">
+    <div class="result-box animate-pop">
 
       <input type="text" id="short-url-output" readonly>
 
-      <button onclick="copiarLink()">
-        Copiar link
+      <button onclick="copiarLink()" id="copyBtn">
+        <span id="copyText">Copiar link</span>
       </button>
 
+    </div>
+
+    <div id="stats" class="stats hidden">
+      👁️ <span id="clicks">0</span> cliques
     </div>
 
   </div>
@@ -57,44 +68,45 @@
 </section>
 
 <section class="about">
-  <h2>O que é um encurtador de links?</h2>
-  <p>Um encurtador transforma URLs longas em links curtos e fáceis de compartilhar.</p>
-
   <h2>Como funciona?</h2>
-  <p>Insira seu link, clique em encurtar e receba uma URL pronta para uso.</p>
+  <p>Insira qualquer link longo, clique em encurtar e receba uma URL curta pronta para compartilhar em segundos.</p>
+  <p>Ideal para redes sociais, Telegram, WhatsApp e muito mais.</p>
 </section>
 
 <section class="faq-section">
   <h2>Dúvidas frequentes</h2>
 
-  <details>
+  <details class="faq-item">
     <summary>Precisa criar conta?</summary>
-    <p>Não. É totalmente gratuito.</p>
+    <p>Não. Uso totalmente gratuito e sem cadastro.</p>
   </details>
 
-  <details>
+  <details class="faq-item">
     <summary>Os links expiram?</summary>
-    <p>Não. Permanecem ativos.</p>
+    <p>Não. Seus links permanecem ativos.</p>
   </details>
 
 </section>
 
-<!-- LINKS INTERNOS (SEO REAL) -->
-<div style="margin-top:20px; text-align:center;">
-  <a href="/como-encurtar-link-whatsapp.html">WhatsApp</a> |
-  <a href="/melhor-encurtador-links-2026.html">Melhor encurtador</a>
+<!-- LINKS INTERNOS SEO (VISÍVEL) -->
+<div style="margin-top:30px; text-align:center; font-size:13px;">
+  <a href="/como-encurtar-link-whatsapp.html">Como encurtar link no WhatsApp</a> |
+  <a href="/melhor-encurtador-links-2026.html">Melhor encurtador 2026</a>
 </div>
 
 </main>
 
-<footer>
-  <a href="/privacidade.html">Privacidade</a>
-  <a href="/termos.html">Termos</a>
+<footer class="footer-fixed">
+  <div>© 2026 BGDV LINKS</div>
+  <div class="footer-links">
+    <a href="/privacidade.html">Privacidade</a>
+    <a href="/termos.html">Termos</a>
+  </div>
 </footer>
 
 </div>
 
-<script src="script.js?v=20"></script>
+<script src="script.js?v=10"></script>
 
 </body>
 </html>
